@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "postgres",
-    "password": "admin",
-    "database": "monitoring_skripsi_dbd",
-    "host": "127.0.0.1",
+    "password": "8H5stll9eGxYPGYu",
+    "database": "postgres",
+    "host": "db.wzzroyinunvxmzobwfkv.supabase.co",
     "dialect": "postgres"
   },
   "test": {

@@ -45,6 +45,7 @@ app.use('/', async (req, res) => {
 app.listen(PORT, async () => {
     try {
         console.log(`Server listening on http://127.0.0.1:${PORT}`);
+        // console.log(`Server listening on https://aplikasi-monitoring-skripsi-23.vercel.app`);
     } catch (error) {
         console.log(error);
     }
