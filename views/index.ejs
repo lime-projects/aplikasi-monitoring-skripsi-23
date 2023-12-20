@@ -1,0 +1,110 @@
+<%- include('layouts/mainHeader') %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Aplikasi Monitoring Skripsi</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- bootstrap css -->
+   <link rel="stylesheet" type="text/css" href="css2/bootstrap.min.css">
+   <!-- style css -->
+   <link rel="stylesheet" type="text/css" href="css/style2.css">
+   <!-- Responsive-->
+   <link rel="stylesheet" href="css2/responsive.css">
+   <!-- fevicon -->
+   <link rel="icon" href="images/fevicon.png" type="image/gif" />
+   <!-- Scrollbar Custom CSS -->
+   <link rel="stylesheet" href="css2/jquery.mCustomScrollbar.min.css">
+   <!-- Tweaks for older IEs-->
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <!-- owl stylesheets -->
+   <link rel="stylesheet" href="css2/owl.carousel.min.css">
+   <link rel="stylesoeet" href="css2/owl.theme.default.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+      media="screen">
+</head>
+
+<body>
+   <!-- header section start -->
+      <div class="header_section header_bg">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a href="index.html" class="logo"><img src="images/logoo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                     <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="panduan.html">Panduan</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="teashop.html">Teashop</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="pricing.html">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="testimonies.html">Testimonies</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="contact.html">Contact</a>
+                  </li>
+               </ul>
+               <form class="form-inline my-2 my-lg-0">
+                  <div class="login_menu">
+                     <ul>
+                        <li><a  href="mahasiswa/register">REGISTER</a></li>
+                        <li class="nav-item dropdown no-arrow">
+                           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown">
+                               <span>LOGIN</span>
+                           </a>
+                           
+                           <!-- Dropdown - User Information -->
+                           <div  id="LOGIN" class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                               <a class="dropdown-item" href="admin/login">
+                                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                   Login Admin
+                               </a>
+                               <a class="dropdown-item" href="koordinator-skripsi/login">
+                                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                   Login Koordinator 
+                               </a>
+                               <a class="dropdown-item" href="dosen/login">
+                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                 Login Dosen
+                             </a>
+                             <a class="dropdown-item" href="mahasiswa/login">
+                              <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Login Mahasiswa
+                          </a>
+                           </div>
+                       </li>
+                        <li><a href="#"><img src="images/search-icon.png"></a></li>
+                     </ul>
+                  </div>
+                  <div></div>
+               </form>
+            </div>
+            <div id="main">
+               <span style="font-size:36px;cursor:pointer; color: #fff" onclick="openNav()"><img src="images/tog.png" 
+     style="height: 30px;"></span>
+            </div>
+         </nav>
+      <!-- banner section end -->
+ 
+<%- include('layouts/footer') %>
+

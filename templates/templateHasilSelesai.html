@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Hasil Skripsi Selesai</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Hasil Skripsi Selesai</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>NPM</th>
+        <th>Nama</th>
+        <th>Judul</th>
+        <th>Hasil Skripsi Mahasiswa</th>
+        <th>Jadwal Seminar Hasil</th>
+        <th>Status Hasil Skripsi</th>
+      </tr>
+      {{#each hasilSelesais }}
+      <tr>
+        <td>{{this.s_no}}</td>
+        <td>{{this.npm}}</td>
+        <td>{{this.nama}}</td>
+        <td>{{this.judul}}</td>
+        <td>{{this.hasilSkripsi}}</td>
+        <td>{{this.jadwalSeminarHasil}}</td>
+        <td>{{this.statusHasilSkripsi}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

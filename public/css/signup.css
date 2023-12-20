@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.login-dark {
+    height: 130vh;
+    background: #f8f9fd;
+    background-size: cover;
+    position: relative;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+
+.login-dark form {
+    max-width:600px;
+    width:90%;
+    padding: 40px;
+    background-color: #ecf0f3;
+    border-radius: 6px;
+    transform:translate(-50%, -50%);
+    position:absolute;
+    top:50%;
+    left:50%;
+    color:#fff;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 30px #fff;
+}
+
+.login-dark .illustration {
+    text-align:center;
+    padding:15px 0 20px;
+    font-size:100px;
+    color:#325662;
+}
+
+.login-dark form .form-control {
+    background:none;
+    border:none;
+    border-bottom:1px solid #325662;
+    border-radius:0;
+    box-shadow:none;
+    outline:none;
+    color:#325662;
+}
+
+.login-dark form .btn-primary1 {
+    background:#325662;
+    border:none;
+    border-radius:4px;
+    padding:11px;
+    box-shadow:none;
+    margin-top:26px;
+    text-shadow:none;
+    outline:none;
+    color: white;
+}
+
+.login-dark form .btn-primary1:hover, .login-dark form .btn-primary1:active {
+    background: #3f6b8c;
+    outline:none;
+}
+
+.login-dark form .forgot {
+    display:block;
+    text-align:center;
+    font-size:12px;
+    color:#325662;
+    opacity:0.9;
+    text-decoration:none;
+}
+
+.login-dark form .forgot:hover, .login-dark form .forgot:active {
+    opacity:1;
+    text-decoration:none;
+}
+
+.login-dark form .btn-primary:active {
+    transform:translateY(1px);
+}
+
+.text-center1 {
+    text-align: center;
+}
+
+.text-muted1 {
+    color: #325662;
+}

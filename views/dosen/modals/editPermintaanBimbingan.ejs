@@ -1,0 +1,84 @@
+<div class="modal fade" id="editPembagianDosen<%= id %>" tabindex="-1" role="dialog" aria-labelledby="editPembagianDosenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/dosen/permintaan-bimbingan/edit/<%= id %>" method="post">
+                <div class="modal-header">
+                    <h4>Edit Permintaan Bimbingan</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="npm">NPM</label>
+                                <input class="form-control w-25" type="number" name="npm" id="npm" value="<%= npm %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input class="form-control w-25" type="text" name="nama" id="nama" value="<%= nama %>" disabled>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="dosenPembimbing1">Dosen Pembimbing 1:</label>
+                                <span><%= dosenPembimbing1 %></span>
+                            <div class="form-group">
+                                <label for="dosenPembimbing2">Dosen Pembimbing 2:</label>
+                                <span><%= dosenPembimbing2 %></span>
+                                
+                            <div class="form-group">
+                                <label for="dosenPembahas">Dosen Pembahas:</label>
+                                <span><%= dosenPembahas %></span>
+                            </div>
+                        </div>
+                            <label for="statusPermintaanBimbingan">Status Permintaan Bimbingan</label>
+                            <div class="form-select">
+                                <select name="statusPermintaanBimbingan" id="statusPermintaanBimbingan" style="width: 
+                                750px;">
+                                <option value="Ditolak" class="bg-red text-white">Ditolak</option>
+                                <option value="Pending" class="bg-green text-white">Pending</option>
+                                <option value="Diterima" class="bg-blue text-white">Diterima</option>
+                            </select>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary1">Ubah</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<link rel="stylesheet" type="text/css" href="/public/css/style.css">
+
+<style>
+    /* Style for 'Ditolak' option */
+    select#statusPermintaanBimbingan option[value="Ditolak"] {
+        background-color: red;
+        color: white;
+    }
+
+    /* Style for 'Pending' option */
+    select#statusPermintaanBimbingan option[value="Pending"] {
+        background-color: green;
+        color: white;
+    }
+
+    /* Style for 'Diterima' option */
+    select#statusPermintaanBimbingan option[value="Diterima"] {
+        background-color: blue;
+        color: white;
+    }
+</style>
+
+
+
+
+
+
+
+
+

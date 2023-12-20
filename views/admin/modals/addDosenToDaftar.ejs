@@ -1,0 +1,62 @@
+<div class="modal fade" id="addDaftarDosen" tabindex="-1" role="dialog" aria-labelledby="addDosenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form action="/admin/daftar-dosen/tambah" method="post">
+                <div class="modal-header">
+                    <h4>Tambah Dosen</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="dosenPembimbing1">Pembimbing 1</label>
+                                <select class="form-control" name="dosenPembimbing1" id="dosenPembimbing1">
+                                    <% daftarDosen.forEach(dosen => { %>
+                                        <option value="<%= dosen.nama %>"><%= dosen.nama %></option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Tambah</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var addDosenForm = document.getElementById('addDosenForm');
+      var dosenPembimbing1 = document.getElementById('dosenPembimbing1');
+    
+      // Mengambil daftar nama dosen dari sumber eksternal (misalnya, server) menggunakan AJAX
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/admin/getDaftarDosen', true); // Ganti dengan URL yang sesuai
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var existingDosenNames = JSON.parse(xhr.responseText);
+    
+          addDosenForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            var selectedDosen = dosenPembimbing1.value;
+    
+            if (existingDosenNames.includes(selectedDosen)) {
+              alert('Dosen sudah ada dalam daftar. Silakan pilih dosen lain.');
+            } else {
+              // Lanjutkan dengan mengirimkan formulir jika nama dosen belum ada dalam daftar
+              this.submit();
+            }
+          });
+        }
+      };
+      xhr.send();
+    });
+    </script>
+    
+    

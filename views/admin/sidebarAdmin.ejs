@@ -1,0 +1,183 @@
+<!-- Sidebar -->
+<ul style="background-color: #325662;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+        <div class="sidebar-brand-text">APK Monitoring Skripsi Admin</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/admin/dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Akademik
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/list-tahun-akademik">
+            <i class="fas fa-fw fa-graduation-cap"></i>
+            <span>Data Akademik</span></a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#masterData"
+            aria-expanded="true" aria-controls="masterData">
+            <i class="fas fa-fw fa-chalkboard"></i>
+            <span>Master Data</span>
+        </a>
+        <div id="masterData" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/admin/mahasiswa">Mahasiswa</a>
+                <a class="collapse-item" href="/admin/dosen">Dosen</a>
+                <a class="collapse-item" href="/admin/koordinator-skripsi">Koordinator Skripsi</a>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#daftarDosen"
+            aria-expanded="true" aria-controls="daftarDosen">
+            <i class="fas fa-fw fa-chalkboard-teacher"></i>
+            <span>Daftar Dosen</span>
+        </a>
+        <div id="daftarDosen" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/admin/daftar-dosen">Dosen Pembimbing 1</a>
+                <a class="collapse-item" href="/admin/daftar-dosen2">Dosen Pembimbing 2</a>
+                <a class="collapse-item" href="/admin/daftar-dosen3">Dosen Pembahas</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Monitoring
+    </div>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengajuan-judul"
+                aria-expanded="true" aria-controls="pengajuan-judul">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Pengajuan Judul</span>
+            </a>
+            <div id="pengajuan-judul" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!-- <h6 class="collapse-header">Data Master</h6> -->
+                    <a class="collapse-item" href="/admin/pengajuan-judul">Judul Masuk</a>
+                    <a class="collapse-item" href="/admin/judul-diterima">Judul Diterima</a>
+                </div>
+            </div>
+        </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/pembagian-dosen">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Data Pembagian Dosen</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bimbingan"
+            aria-expanded="true" aria-controls="bimbingan">
+            <i class="fas fa-fw fa-shapes"></i>
+            <span>Bimbingan</span>
+        </a>
+        <div id="bimbingan" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/admin/permintaan-bimbingan">Permintaan Bimbingan</a>
+                <a class="collapse-item" href="/admin/proposal">Proposal</a>
+                <a class="collapse-item" href="/admin/hasil-skripsi">Hasil Skripsi</a>
+                <a class="collapse-item" href="/admin/komprehensif">Komprehensif</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+
+   <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#proposal"
+        aria-expanded="true" aria-controls="proposal">
+        <i class="fas fa-fw fa-file"></i>
+        <span>Proposal</span>
+    </a>
+    <div id="proposal" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Data Master</h6> -->
+            <a class="collapse-item" href="/admin/proposal-masuk">Proposal Masuk</a>
+            <a class="collapse-item" href="/admin/proposal-terjadwal">Proposal Terjadwal</a>
+            <a class="collapse-item" href="/admin/proposal-selesai">Proposal Selesai</a>
+        </div>
+    </div>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hasilSkripsi"
+        aria-expanded="true" aria-controls="hasilSkripsi">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Hasil Skripsi</span>
+    </a>
+    <div id="hasilSkripsi" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Data Master</h6> -->
+            <a class="collapse-item" href="/admin/hasil-masuk">Hasil Skripsi Masuk</a>
+            <a class="collapse-item" href="/admin/hasil-terjadwal">Hasil Skripsi Terjadwal</a>
+            <a class="collapse-item" href="/admin/hasil-selesai">Hasil Skripsi Selesai</a>
+        </div>
+    </div>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#komprehensif"
+        aria-expanded="true" aria-controls="komprehensif">
+        <i class="fas fa-chart-bar fa-fw"></i>
+        <span>Komprehensif</span>
+    </a>
+    <div id="komprehensif" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Data Master</h6> -->
+            <a class="collapse-item" href="/admin/komprehensif-masuk">Komprehensif Masuk</a>
+            <a class="collapse-item" href="/admin/komprehensif-terjadwal">Komprehensif Terjadwal</a>
+            <a class="collapse-item" href="/admin/komprehensif-selesai">Komprehensif Selesai</a>
+        </div>
+    </div>
+</li>
+    
+   <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->

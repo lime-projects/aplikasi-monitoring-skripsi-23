@@ -1,0 +1,30 @@
+<div class="modal fade" id="importMahasiswa" tabindex="-1" role="dialog" aria-labelledby="importMahasiswaLabel" 
+aria-hidden="true">
+        <!-- Proposal Form -->
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form action="/admin/mahasiswa/import" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4>Import Data Mahasiswa</h4>
+                </div>
+                <div class="modal-body container">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="excelFile">Pilih File Excel</label>
+                        <input class="form-control-file" type="file" accept=".xlsx" name="excelFile" required>
+                        <br>
+                        <button class="btn btn-primary1" type="submit" name="preview">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Import Data Mahasiswa</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!-- /.container-fluid -->

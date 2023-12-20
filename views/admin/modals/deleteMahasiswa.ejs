@@ -1,0 +1,22 @@
+<div class="modal fade" id="deleteMahasiswa<%= id %>" tabindex="-1" aria-labelledby="mahasiswa" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mahasiswa">
+                    Hapus Mahasiswa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah anda yakin ingin menghapus data mahasiswa atas nama <%= nama %> dengan npm <%= npm %>?
+            </div>
+            <div class="modal-footer">
+                <form action="/admin/mahasiswa/delete/<%= id %>" method="get">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Ya</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+            </div>
+        </div>
+    </div>
+</div>

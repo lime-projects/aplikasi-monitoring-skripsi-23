@@ -1,0 +1,29 @@
+<div class="modal fade" id="addDaftarDosen" tabindex="-1" role="dialog" aria-labelledby="addDosenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form action="/koordinator-skripsi/daftar-dosen2/tambah" method="post">
+                <div class="modal-header">
+                    <h4>Tambah Dosen</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="dosenPembimbing2">Pembimbing 2</label>
+                                <select class="form-control" name="dosenPembimbing2" id="dosenPembimbing2">
+                                    <% daftarDosen.forEach(dosen => { %>
+                                        <option value="<%= dosen.nama %>"><%= dosen.nama %></option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Tambah</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

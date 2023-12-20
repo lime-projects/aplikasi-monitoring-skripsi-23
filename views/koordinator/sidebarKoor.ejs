@@ -1,0 +1,153 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
+        <div class="sidebar-brand-text">APK Monitoring Skripsi Koor</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/koordinator-skripsi/dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Akademik
+    </div>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengajuan-judul"
+            aria-expanded="true" aria-controls="pengajuan-judul">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Pengajuan Judul</span>
+        </a>
+        <div id="pengajuan-judul" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/koordinator-skripsi/pengajuan-judul">Judul Masuk</a>
+                <a class="collapse-item" href="/koordinator-skripsi/judul-diterima">Judul Diterima</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/koordinator-skripsi/pembagian-dosen">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Data Pembagian Dosen</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#daftarDosen"
+            aria-expanded="true" aria-controls="daftarDosen">
+            <i class="fas fa-fw fa-chalkboard-teacher"></i>
+            <span>Daftar Dosen</span>
+        </a>
+        <div id="daftarDosen" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/koordinator-skripsi/daftar-dosen">Dosen Pembimbing 1</a>
+                <a class="collapse-item" href="/koordinator-skripsi/daftar-dosen2">Dosen Pembimbing 2</a>
+                <a class="collapse-item" href="/koordinator-skripsi/daftar-dosen3">Dosen Pembahas</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kelola-bimbingan"
+            aria-expanded="true" aria-controls="kelola-bimbingan">
+            <i class="fas fa-cogs"></i>
+            <span>Kelola Bimbingan</span>
+        </a>
+        <div id="kelola-bimbingan" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/koordinator-skripsi/permintaan-bimbingan">Permintaan Bimbingan</a>
+                <a class="collapse-item" href="/koordinator-skripsi/proposal">Proposal</a>
+                <a class="collapse-item" href="/koordinator-skripsi/hasil-skripsi">Hasil Skripsi</a>
+                <a class="collapse-item" href="/koordinator-skripsi/komprehensif">Komprehensif</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Monitoring
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#proposal"
+            aria-expanded="true" aria-controls="proposal">
+            <i class="fas fa-fw fa-file"></i>
+            <span>Proposal</span>
+        </a>
+        <div id="proposal" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/koordinator-skripsi/proposal-masuk">Proposal Masuk</a>
+                <a class="collapse-item" href="/koordinator-skripsi/proposal-terjadwal">Proposal Terjadwal</a>
+                <a class="collapse-item" href="/koordinator-skripsi/proposal-selesai">Proposal Selesai</a>
+            </div>
+        </div>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hasilSkripsi"
+            aria-expanded="true" aria-controls="hasilSkripsi">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Hasil Skripsi</span>
+        </a>
+        <div id="hasilSkripsi" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/koordinator-skripsi/hasil-masuk">Hasil Skripsi Masuk</a>
+                <a class="collapse-item" href="/koordinator-skripsi/hasil-terjadwal">Hasil Skripsi Terjadwal</a>
+                <a class="collapse-item" href="/koordinator-skripsi/hasil-selesai">Hasil Skripsi Selesai</a>
+            </div>
+        </div>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#komprehensif"
+            aria-expanded="true" aria-controls="komprehensif">
+            <i class="fas fa-chart-bar fa-fw"></i>
+            <span>Komprehensif</span>
+        </a>
+        <div id="komprehensif" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Data Master</h6> -->
+                <a class="collapse-item" href="/koordinator-skripsi/komprehensif-masuk">Komprehensif Masuk</a>
+                <a class="collapse-item" href="/koordinator-skripsi/komprehensif-terjadwal">Komprehensif Terjadwal</a>
+                <a class="collapse-item" href="/koordinator-skripsi/komprehensif-selesai">Komprehensif Selesai</a>
+            </div>
+        </div>
+    </li>
+        
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->

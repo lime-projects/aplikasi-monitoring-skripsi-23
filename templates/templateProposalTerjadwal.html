@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Bimbingan Proposal Terjadwal</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Bimbingan Proposal Terjadwal</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>NPM</th>
+        <th>Nama</th>
+        <th>Proposal Mahasiswa</th>
+        <th>Jadwal Seminar Proposal</th>
+        <th>Status Proposal</th>
+      </tr>
+      {{#each proposalTerjadwals }}
+      <tr>
+        <td>{{this.s_no}}</td>
+        <td>{{this.npm}}</td>
+        <td>{{this.nama}}</td>
+        <td>{{this.proposal}}</td>
+        <td>{{this.jadwalSeminarProposal}}</td>
+        <td>{{this.statusProposal}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

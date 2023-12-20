@@ -1,0 +1,145 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('sidebarMahasiswa') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <link rel="stylesheet" href="/public/css/style.css">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Navbar Mahasiswa -->
+            <%- include('../layouts/navbarTopMahasiswa', { id, username }) %>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+                </div>
+                
+
+                <% if (addSuccess1.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (addSuccess2.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess2 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                
+                <% if (telahMengajukan.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= telahMengajukan %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (telahMengajukan2.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= telahMengajukan2 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (tahunAkademikMati.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= tahunAkademikMati %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (tahunAkademikMati1.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= tahunAkademikMati1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (editSuccess1.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= editSuccess1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (editSuccess2.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= editSuccess2 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- Content Row -->
+                <div class="card shadow mb-4">
+                <div class="card-body">
+                <div class="col">
+                    <div class="form-group">
+                        <% if (pengajuanJudul && pengajuanJudul.statusPersetujuan) { %>
+                            <label>Status persetujuan judul yang anda ajukan :</label>
+                            <span class="judul-badge <%= colors.getStatusColor(pengajuanJudul.statusPersetujuan) %>">
+                                <label><%= pengajuanJudul.statusPersetujuan %></label>
+                            </span>
+                        <% } else { %>
+                            <label>Status persetujuan judul yang di ajukan : <span style="color: orange;"><strong>
+                            <% if (pengajuanJudul) { %>
+                                (Menunggu persetujuan dari program studi)
+                            <% } else { %>
+                                (Anda belum mengajukan judul)
+                            <% } %></strong></span></label>
+                        <% } %>                                     
+                    </div>                    
+                </div>
+                        <% if (!hasSubmitted1) { %>
+                            <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#addJudul1">Judul 1</button>
+                            <%- include('./modals/judul1') %>
+                        <% } else { %>
+                            <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#editJudul1">Edit Judul 1</button>
+                            <%- include('./modals/editJudul1') %>
+                        <% } %>
+                    
+                        <% if (!hasSubmitted2) { %>
+                            <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#addJudul2">Judul 2</button>
+                            <%- include('./modals/judul2') %>
+                        <% } else { %>
+                            <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#editJudul2">Edit Judul 2</button>
+                            <%- include('./modals/editJudul2') %>
+                        <% } %>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="card-footer">
+                        <small>Kirim pengajuan judul sebelum deadline.</small>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+<%- include('../layouts/footer') %>

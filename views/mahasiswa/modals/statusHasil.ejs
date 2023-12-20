@@ -1,0 +1,63 @@
+<div class="modal fade" id="statusHasilSkripsi" tabindex="-1" role="dialog" aria-labelledby="stasusHasilSkripsiLabel" aria-hidden="true">
+        <!-- Proposal Form -->
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form action="/mahasiswa/hasil-skripsi-status/edit" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4>Status Proposal</h4>
+                </div>
+                <div class="modal-body container">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="npm">NPM</label>
+                        <input class="form-control" type="number" name="npm" id="npm" value="<%= profile.npm %>" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input class="form-control" type="text" name="nama" id="nama" value="<%= profile.nama %>" disabled>
+                      </div>
+                      <br>
+                      <label for="judul">Judul : </label>
+                      <br>
+                      <% dataHasilSkripsi.map((item, i) => { %>
+                        <% if (item.TitleSubmission) { %>
+                          <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                            <%= item.TitleSubmission.judul1 %>
+                          <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                            <%= item.TitleSubmission2.judul2 %>
+                          <% } else { %>
+                            -
+                          <% } %>
+                        <% } %>
+                      <% }) %>
+                      <br>
+                      <br>
+                      <div class="form-group">
+                        <label for="jadwalSeminarHasil">Jadwal Seminar Hasil</label>
+                        <input class="form-control" type="datetime-local" name="jadwalSeminarHasil" id="jadwalSeminarHasil"
+                            value="<%= hasilSkripsi.jadwalSeminarHasil ? new Date(hasilSkripsi.jadwalSeminarHasil).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                    </div>                            
+                    <div class="form-group">
+                      <label for="hasil">Status Hasil Skripsi</label>
+                      <br>
+                      <% if (hasilSkripsi) { %>
+                          <span class="text-success">✔</span> 
+                          <span style="color: green;">Bimbingan hasil sudah diajukan</span> 
+                      <% } %>
+                  </div>                  
+                    </div>
+                  </div>
+                </div>
+                <div style="color: red; margin-left: 25px;">
+                  Input jadwal seminar hasil apabila telah di acc untuk seminar hasil dan telah mendapatkan jadwal dari dosen pembimbing 1, dosen pembimbing 2, dan dosen pembahas.
+                </div>                
+                <div class="modal-footer">
+                  <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Ubah</button>
+                  <button type="button" class="btn" data-dismiss="modal" style="background-color: red; color: #FFF;">Kembali</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!-- /.container-fluid -->

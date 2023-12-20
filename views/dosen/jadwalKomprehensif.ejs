@@ -1,0 +1,168 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('./sidebarDosen') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Navbar Dosen -->
+            <%- include('../layouts/navbarTopDosen', { id, username }) %>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+                </div>
+
+                <% if (editSuccess.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= editSuccess %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- Content Row -->
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold" style="color: #325662;">Data Pembagian Dosen</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NPM</th>
+                                        <th>Nama</th>
+                                        <th>Judul</th>
+                                        <th>Pembimbing 1</th>
+                                        <th>Pembimbing 2</th>
+                                        <th>Pembahas</th>
+                                        <th>Tanggal Ujian Komprehensif</th>
+                                        <th>Jadwal Sebagai</th>
+                                        <th>Kompre</th>
+                                        <th style="width: 10%;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% dataJadwalKomprehensif.filter(item => item.jadwalUjianKomprehensif).map((item, i) => { %>
+                                        <tr>
+                                            <td><%= i+1 %></td>
+                                            <td><%= item.npm %></td>
+                                            <td><%= item.nama %></td>
+                                            <td>
+                                                <% if (item.TitleSubmission) { %>
+                                                  <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                                                    <%= item.TitleSubmission.judul1 %>
+                                                  <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                                    <%= item.TitleSubmission2.judul2 %>
+                                                  <% } else { %>
+                                                    -
+                                                  <% } %>
+                                                <% } else { %>
+                                                  -
+                                                <% } %>
+
+                                                <% var judulToShow; %>
+                                                    <% if (item.TitleSubmission) { %>
+                                                    <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                                                        <% judulToShow = item.TitleSubmission.judul1; %>
+                                                    <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                                        <% judulToShow = item.TitleSubmission2.judul2; %>
+                                                    <% } else { %>
+                                                        <% judulToShow = '-'; %>
+                                                    <% } %>
+                                                    <% } else { %>
+                                                    <% judulToShow = '-'; %>
+                                                    <% } %>
+                                                </td>
+                                                <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.
+                                                    dosenPembimbing1 : '-' %></td>
+                                                <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.
+                                                    dosenPembimbing2 : '-' %></td>
+                                                </td>
+                                                <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.
+                                                    dosenPembahas : '-' %></td>
+                                                </td>
+                                                <td style="color: #4682B4;">
+                                                <strong> <% if (item.jadwalUjianKomprehensif) { %>
+                                                        <% const timezone = 'Asia/Jakarta' %>
+                                                        <% const date = new Date(item.jadwalUjianKomprehensif); %>
+                                                        <% const options = {
+                                                            timeZone: timezone,
+                                                            weekday: 'long',
+                                                            day: 'numeric',
+                                                            month: 'long',
+                                                            year: 'numeric',
+                                                        }; %>
+                                                        <% const formattedDate = date.toLocaleDateString('id-ID', options) + '. Pukul ' + date.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB.';%>
+                                                        <p><%= formattedDate %></p>
+                                                    <% } else { %>
+                                                        Tidak ada jadwal
+                                                    <% } %></strong> 
+                                                </td>
+                                                <td>
+                                                    <% if (
+                                                        (item.DevisionOfLecturer && item.DevisionOfLecturer.dosenPembimbing1 === username) ||
+                                                        (item.DevisionOfLecturer && item.DevisionOfLecturer.dosenPembimbing2 === username) ||
+                                                        (item.DevisionOfLecturer && item.DevisionOfLecturer.dosenPembahas === username)
+                                                    ) { %>
+                                                        <div class="form-group">
+                                                            <label style="color: #F33A3A; font-weight: bold" class="col-form-label">
+                                                                <% if (item.DevisionOfLecturer.dosenPembimbing1 === username) { %>
+                                                                    Sebagai dosen pembimbing 1 (satu)
+                                                                    <input type="hidden" name="dari" id="dari" value="terima_p1">
+                                                                <% } else if (item.DevisionOfLecturer.dosenPembimbing2 === username) { %>
+                                                                    Sebagai dosen pembimbing 2 (dua)
+                                                                    <input type="hidden" name="dari" id="dari" value="terima_p2">
+                                                                <% } else if (item.DevisionOfLecturer.dosenPembahas === username) { %>
+                                                                    Sebagai dosen pembahas
+                                                                    <input type="hidden" name="dari" id="dari" value="terima_pembahas">
+                                                                <% } %>
+                                                            </label>
+                                                        </div>
+                                                    <% } %>
+                                                </td>
+                                                
+                                                <td>                                                
+                                                <% if (item.komprehensif) { %>
+                                                    <a href="/dosen/komprehensif/download/<%= item.id %>">
+                                                        <%= item.komprehensif.split('/').pop() %>
+                                                    </a>
+                                                    <% } else { %>
+                                                        -
+                                                        <% } %>
+                                                </td>                                         
+                                            <td>
+                                                <div style="display: flex; justify-content: center;">
+                                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editPembagianDosen<%= item.id %>">Lihat Data</button>
+                                                <%- include('../dosen/modals/editJadwalKomprehensif', { 
+                                                    id: item.id, 
+                                                    npm: item.npm, 
+                                                    nama: item.nama,
+                                                    judul: judulToShow,
+                                                    dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,dosenPembahas: item.DevisionOfLecturer.dosenPembahas,
+                                                    jadwalUjianKomprehensif: item.jadwalUjianKomprehensif
+                                                }) %>
+                                            </td>                                            
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+        <%- include('../layouts/footer') %>
+    </div>
+</div>

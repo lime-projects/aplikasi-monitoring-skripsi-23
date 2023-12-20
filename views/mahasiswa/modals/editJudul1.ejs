@@ -1,0 +1,62 @@
+<div class="modal fade" id="editJudul1" tabindex="-1" role="dialog" aria-labelledby="editJudul1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/mahasiswa/pengajuan-editJudul1" method="post">
+                <div class="modal-header">
+                    <h4>Judul 1</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="npm">NPM</label>
+                                <input class="form-control" type="number" name="npm" id="npm" value="<%= profile.npm %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input class="form-control" type="text" name="nama" id="nama" value="<%= profile.nama %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="judul1">Judul 1</label>
+                                <input class="form-control" type="text" name="judul1" id="edit-judul1-input" value="<%= pengajuanJudul.judul1 %>" required>
+                            </div>                            
+                            <div class="form-group">
+                                <label for="latarBelakang">Latar Belakang</label>
+                                <textarea class="form-control" name="latarBelakang" id="latarBelakang" style="height: 100px;"><%= pengajuanJudul.latarBelakang %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="metode">Metode Pengembangan</label>
+                                <input class="form-control" type="text" name="metode" id="metode" value="<%= pengajuanJudul.metode %>"required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="gambaran">Gambaran</label>
+                                <textarea class="form-control" name="gambaran" id="gambaran" style="height: 100px;"><%= pengajuanJudul.gambaran %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="referensiJurnal1">Referensi Jurnal 1</label>
+                                <input class="form-control" type="text" name="referensiJurnal1" id="referensiJurnal1" value="<%= pengajuanJudul.referensiJurnal1 %>" required >
+                            </div>
+                            <div class="form-group">
+                                <label for="referensiJurnal2">Referensi Jurnal 2</label>
+                                <input class="form-control" type="text" name="referensiJurnal2" id="referensiJurnal2" value="<%= pengajuanJudul.referensiJurnal2 %>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="referensiJurnal3">Referensi Jurnal 3</label>
+                                <input class="form-control" type="text" name="referensiJurnal3" id="referensiJurnal3"
+                                value="<%= pengajuanJudul.referensiJurnal3 %>" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Edit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    

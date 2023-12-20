@@ -1,0 +1,250 @@
+<%- include('../layouts/header') %>
+    <div id="wrapper">
+        <%- include('./sidebarDosen') %>
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Navbar Dosen -->
+                    <%- include('../layouts/navbarTopDosen') %>
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800">
+                                    <%= title %>
+                                </h1>
+                            </div>
+
+                            <!-- Content Row -->
+                            <div class="row">
+
+                                <!-- Earnings (Monthly) Card Example -->
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid SandyBrown;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: SandyBrown;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Koordinator</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= koors.length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-building fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid Teal;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: Teal;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Mahasiswa</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= students.length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid Plum;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: Plum;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Dosen Pembimbing</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        1 / <%= lecturers.length %> Pembimbing
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-user-secret fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid MediumAquamarine;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: MediumAquamarine;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Pengajuan Dosen</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= pengajuanDosen.length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-user-friends fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid  SkyBlue;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: SkyBlue;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Pengajuan Judul</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= titleSubs.length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-pencil-alt fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pending Requests Card Example -->
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid  SlateBlue;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: SlateBlue;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Proposal</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= jumlahMahasiswaProposal.length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-book fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid  LimeGreen;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: LimeGreen;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Proposal Selesai</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= jumlahMahasiswaProposal.filter(item => item.
+                                                        statusProposal === 'Selesai').length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-check-circle fa-2x text-success text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid  PaleVioletRed;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: PaleVioletRed;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Hasil Skripsi</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= jumlahMahasiswaHasil.length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-book-open fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card shadow h-100 py-2" style="border-left: 5px solid Salmon;">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div  style="color: salmon;" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                        Jumlah Hasil Skripsi Selesai</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= jumlahMahasiswaHasil.filter(item => item.
+                                                        statusHasilSkripsi === 'Selesai').length %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-lock-open fa-2x fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card shadow h-100 py-2" style="border-left: 5px solid SteelBlue;">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div  style="color: SteelBlue" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                    Jumlah Mahasiswa Komprehensif</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <%= jumlahMahasiswaKomprehensif.length %>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-user-tag fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card shadow h-100 py-2" style="border-left: 5px solid DarkOrchid;">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div  style="color: DarkOrchid" class="text-xs font-weight-bold text-uppercase mb-1">
+                                                    Jumlah Mahasiswa Komprehensif Selesai</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <%= jumlahMahasiswaKomprehensif.filter(item => item.
+                                                    statusKomprehensif === 'Selesai').length %>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-user-shield fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                        </div>
+                        <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+                <%- include('../layouts/footer') %>

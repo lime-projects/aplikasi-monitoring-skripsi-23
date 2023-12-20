@@ -1,0 +1,56 @@
+<div class="modal fade" id="lihatRevisiPb2" tabindex="-1" role="dialog" aria-labelledby="lihatRevisiPb2Label" 
+aria-hidden="true">
+        <!-- Hasil Skripsi Form -->
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form action="/mahasiswa/hasil-skripsi/edit" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4>Lihat Revisi Pembimbing 2</h4>
+                </div>
+                <div class="modal-body container">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="npm">NPM</label>
+                        <input class="form-control" type="number" name="npm" id="npm" value="<%= profile.npm %>" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input class="form-control" type="text" name="nama" id="nama" value="<%= profile.nama %>" disabled>
+                      </div>
+                      <% dataHasilSkripsi.map((item, i) => { %>
+                      <div class="form-group">
+                        <label style="color: #4682B4; font-weight: bold;" for="dosenPembimbing2">Dosen Pembimbing 2:</label>
+                        <span style="color: #4682B4; font-weight: bold;"><%= item.DevisionOfLecturer.dosenPembimbing2 %></span>
+                        <% }) %>
+                      <div class="form-group">
+                        <label for="revisi2">Revisi</label>
+                        <textarea class="form-control" name="revisi2" id="revisi2" style="height: 300px;" disabled><%= hasilSkripsi.revisi2 %></textarea>
+                      </div>
+                      <div class="form-group">
+                        <br>
+                        <label for="hasilSkripsiRevisiDosen2">Revisi Hasil Skripsi dari Dosen: </label>
+                        <% if (hasilSkripsi.hasilSkripsiRevisiDosen2) { %>
+                          <a href="/mahasiswa/hasil-skripsi-revisiDosen2/download/<%= hasilSkripsi.id %>">
+                            <%= hasilSkripsi.hasilSkripsiRevisiDosen2.split('/').pop() %>
+                          </a>
+                        <% } else { %>
+                          -
+                        <% } %> 
+                      </div>                      
+                      <div class="form-group">
+                        <label for="tanggalRevisiDosen2">Tanggal Dosen Memberikan Revisi</label>
+                        <input class="form-control" type="datetime-local" name="tanggalRevisiDosen2" id="tanggalRevisiDosen2" value="<%= hasilSkripsi.tanggalRevisiDosen2 ? new Date(hasilSkripsi.tanggalRevisiDosen2).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" disabled>
+                    </div>    
+                  </div>
+                </div>
+            </div>                        
+                <div class="modal-footer">
+                  <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-dismiss="modal">Kembali</button>
+                </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!-- /.container-fluid -->

@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.judul-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.blue-text {
+  color: blue;
+}
+
+.green-text {
+  color: green;
+}
+
+.red-text {
+  color: red;
+}
+.orange-text {
+  color: orange;
+}
+
+#currentPhoto {
+  border: 1px solid black;
+  display: block;
+  margin: auto;
+}
+
+/* style.css */
+.img-thumbnail {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+#content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#footer-container {
+  margin-top: auto;
+}
+
+.form-gap {
+  padding-top: 70px;
+}

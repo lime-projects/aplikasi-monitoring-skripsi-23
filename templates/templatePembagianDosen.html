@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Pembagian Dosen Mahasiswa</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Pembagian Dosen Mahasiswa</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>NPM</th>
+        <th>Nama</th>
+        <th>Dosen Pembimbing 1</th>
+        <th>Dosen Pembimbing 2</th>
+        <th>Dosen Pembahas</th>
+        <th>Tanggal Pengajuan</th>
+        <th>Status Pembimbing 1</th>
+        <th>Status Pembimbing 2</th>
+        <th>Status Pembahas</th>
+      </tr>
+      {{#each devisions }}
+      <tr>
+        <td>{{this.s_no}}</td>
+        <td>{{this.npm}}</td>
+        <td>{{this.nama}}</td>
+        <td>{{this.dosenPembimbing1}}</td>
+        <td>{{this.dosenPembimbing2}}</td>
+        <td>{{this.dosenPembahas}}</td>
+        <td>{{this.tanggalPengajuan}}</td>
+        <td>{{this.statusPembimbing1}}</td>
+        <td>{{this.statusPembimbing2}}</td>
+        <td>{{this.statusPembahas}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

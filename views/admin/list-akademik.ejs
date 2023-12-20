@@ -1,0 +1,150 @@
+<%- include('../layouts/header') %>
+    <div id="wrapper">
+        <%- include('./sidebarAdmin') %>
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Navbar Admin -->
+                    <%- include('../layouts/navbarTopAdmin') %>
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">
+                                <%= title %>
+                            </h1>
+                            <button type="button" data-toggle="modal" data-target="#addListAkademik" class="d-none d-sm-inline-block btn btn-sm shadow-sm" style="background-color: #325662; color: white;">
+                                <i class="fas fa-plus fa-sm text-white-50"></i> Add Data
+                            </button>
+
+                            <%- include('./modals/addListAkademik') %>
+                        </div>
+                        <!-- Alert -->
+                        <% if (addSuccess.length !== 0) { %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><%= addSuccess %></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <% } %>
+                        <% if (deleteSuccess.length !== 0) { %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><%= deleteSuccess %></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <% } %>
+                        <% if (editSuccess.length !== 0) { %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><%= editSuccess %></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <% } %>
+                        <% if (editStatus.length !== 0) { %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><%= editStatus %></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <% } %>
+
+                        <!-- Content Row -->
+
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold" style="color: #325662;">Data List Tahun Akademik</h6>
+                            </div>
+                            <br>
+                            <!-- <div style="color: red; margin-left: 20px;">Hanya satu Tahun Akademik yang dapat diaktifkan</div> -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered nowrap" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tahun Akademik</th>
+                                                <th>Semester</th>
+                                                <th>Angkatan</th>
+                                                <th>Tanggal Mulai</th>
+                                                <th>Tanggal Akhir</th>
+                                                <th>Status</th>
+                                                <th style="width: 10%;">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% result.map((item, i) => { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= i+1 %>
+                                                    </td>
+                                                    <td>
+                                                        <%= item.tahunAkademik %>
+                                                    </td>
+                                                    <td>
+                                                        <%= item.semester %>
+                                                    </td>
+                                                    <td>
+                                                        <%= item.angkatan %>
+                                                    </td>
+                                                    <td>
+                                                        <%= new Date(item.tanggalMulai).toLocaleDateString('id', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= new Date(item.tanggalAkhir).toLocaleDateString('id', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="<%= item.status === true ? "btn btn-sm btn btn btn-sm btn-success" : "btn btn-sm btn badge-danger" %>" data-toggle="modal" data-target="#editStatus<%= item.id %>">
+                                                            <%= item.status === true ? `Aktif` : `Mati` %>
+                                                        </button>
+                                                        <%- include('./modals/editStatus', {
+                                                            id: item.id,
+                                                        }) %>
+                                                    </td>
+                                                    <td>
+                                                        <div style="display: flex; gap: 10px;">
+                                                        <button class="btn i btn-sm btn-warning" data-toggle="modal" data-target="#editList<%= item.id %>">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger" 
+                                                        data-toggle="modal" data-target="#deleteList<%= item.id %>">
+                                                         <i class="fas fa-trash"></i>
+                                                         </button>
+                                                         <%- include('./modals/deleteList', {
+                                                            id: item.id,
+                                                            tahun: item.tahunAkademik
+                                                         }) %>
+                                                        <%- include('./modals/editListAkademik', {
+                                                         id: item.id,
+                                                         tahunAkademik: item.tahunAkademik,
+                                                         semester: item.semester,
+                                                         angkatan: item.angkatan,
+                                                         tanggalMulai: item.tanggalMulai,
+                                                         tanggalAkhir: item.tanggalAkhir
+                                                        }) %>
+                                                        </div>
+                                                    </td>                                          
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+                <%- include('../layouts/footer') %>

@@ -1,0 +1,319 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('./sidebarDosen') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Navbar Dosen -->
+            <%- include('../layouts/navbarTopDosen', {id, username}) %>
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+                </div>
+
+                <% if (addSuccess.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if (addSuccess1.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NPM</th>
+                                        <th>Nama</th>
+                                        <th>Judul</th>
+                                        <th>Pembimbing 1</th>
+                                        <th>Pembimbing 2</th>
+                                        <th>Pembahas</th>
+                                        <th>Tanggal Pengajuan</th>
+                                        <th>Komprehensif</th>
+                                        <th>Revisi dari Dosen</th>
+                                        <th>Revisi Komprehensif Mahasiswa</th>
+                                        <th>Status Komprehensif</th>
+                                        <th>Jadwal Ujian Komprehensif</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% dataBimbinganKomprehensif.map((item, i) => { %>
+                                        <tr>
+                                            <td><%= i+1 %></td>
+                                            <td><%= item.npm %></td>
+                                            <td><%= item.nama %></td>
+                                            <td>
+                                                <% if (item.TitleSubmission) { %>
+                                                  <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                                                    <%= item.TitleSubmission.judul1 %>
+                                                  <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                                    <%= item.TitleSubmission2.judul2 %>
+                                                  <% } else { %>
+                                                    -
+                                                  <% } %>
+                                                <% } else { %>
+                                                  -
+                                                <% } %>
+                                                <% var judulToShow; %>
+                                                <% if (item.TitleSubmission) { %>
+                                                    <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                                                        <% judulToShow = item.TitleSubmission.judul1; %>
+                                                    <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                                        <% judulToShow = item.TitleSubmission2.judul2; %>
+                                                    <% } else { %>
+                                                        <% judulToShow = '-'; %>
+                                                    <% } %>
+                                                <% } else { %>
+                                                    <% judulToShow = '-'; %>
+                                                <% } %>
+                                            </td>
+                                            <td><%= item.DevisionOfLecturer ? (item.DevisionOfLecturer.dosenPembimbing1 || '-') : '-' %></td>
+                                            <td><%= item.DevisionOfLecturer ? (item.DevisionOfLecturer.dosenPembimbing2 || '-') : '-' %></td>
+                                            <td><%= item.DevisionOfLecturer ? (item.DevisionOfLecturer.dosenPembahas || '-') : '-' %></td>
+                                            <td>
+                                                <% const timezone = 'Asia/Jakarta' %>
+                                                <% const date = new Date(item.tanggalPengajuan); %>
+                                                <% const options = {
+                                                    timeZone: timezone,
+                                                    weekday: 'long',
+                                                    day: 'numeric',
+                                                    month: 'long',
+                                                    year: 'numeric',
+                                                }; %>
+                                                <% const formattedDate = date.toLocaleDateString('id-ID', options) 
+                                           + '. Pukul ' + date.toLocaleTimeString('id-ID', { hour12: false }) 
+                                           + ' WIB.'; %>
+                                                <p><%= formattedDate %></p>
+                                            </td>
+                                            <td>
+                                                <% if (item.komprehensif) { %>
+                                                  <a href="/dosen/bimbingan/komprehensif/download/<%= item.id %>">
+                                                    <%= item.komprehensif.split('/').pop() %>
+                                                  </a>
+                                                <% } else { %>
+                                                  -
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-primary1"  style="background-color: #325662; color: #FFF; white-space: nowrap;" data-toggle="modal" data-target="#lihatRevisiPb1Pb2<%= item.id %>">Lihat Revisi</button>
+                                                <%- include('./modals/lihatRevisiKomprehensif', {
+                                                    id: item.id,
+                                                    npm: item.npm,
+                                                    nama: item.nama,
+                                                    judul: judulToShow,
+                                                    dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                    dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                    revisi1Komprehensif: item.revisi1Komprehensif,
+                                                    revisi2Komprehensif: item.revisi2Komprehensif,
+                                                    komprehensifRevisiDosen1: item.komprehensifRevisiDosen1,
+                                                    komprehensifRevisiDosen2: item.komprehensifRevisiDosen2,
+                                                    tanggalRevisiDosen1Komprehensif: item.tanggalRevisiDosen1Komprehensif,
+                                                    tanggalRevisiDosen2Komprehensif: item.tanggalRevisiDosen2Komprehensif,
+                                                }) %>
+                                            </td>
+                                            <td>
+                                                <% if (item.komprehensifRevisi1) { %>
+                                                <a href="/dosen/komprehensif-revisi1/download/<%= item.id %>">
+                                                    ✔<%= "Revisi Pb1" %>
+                                                </a>
+                                                <% } else { %>
+                                                       -
+                                                <% } %>
+                                            <br>
+                                            <% if (item.komprehensifRevisi2) { %>
+                                                <a href="/dosen/komprehensif-revisi2/download/<%= item.id %>">
+                                                    ✔<%= "Revisi Pb2" %>
+                                                </a>
+                                              <% } else { %>
+                                                -
+                                              <% } %>
+                                            </td>
+                                            <td id="statusKomprehensif_<%= item.id %>" style="font-weight: bold;">
+                                                <span class="<%= warna7[item.id] %>">
+                                                    <% if (item.statusKomprehensif) { %>
+                                                        <%= item.statusKomprehensif %>
+                                                    <% } else { %>
+                                                        <span style="color: orange;">Menunggu Persetujuan</span>
+                                                    <% } %>
+                                                </span>
+                                            </td>                                            
+                                            <td>
+                                                <% if (item.jadwalUjianKomprehensif) { %>
+                                                    <% const timezone = 'Asia/Jakarta' %>
+                                                    <% const date = new Date(item.jadwalUjianKomprehensif); %>
+                                                    <% const options = {
+                                                        timeZone: timezone,
+                                                        weekday: 'long',
+                                                        day: 'numeric',
+                                                        month: 'long',
+                                                        year: 'numeric',
+                                                    }; %>
+                                                    <% const formattedDate = date.toLocaleDateString('id-ID', options) + '. Pukul ' + date.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB.';%>
+                                                    <p><%= formattedDate %></p>
+                                                <% } else { %>
+                                                    Tidak ada jadwal
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editKomprehensif<%= item.id %>">
+                                                        <span style="white-space: nowrap;">Lihat Data</span>
+                                                    </button>
+                                                    <%- include('./modals/editKomprehensif', {
+                                                        id: item.id,
+                                                        npm: item.npm,
+                                                        nama: item.nama,
+                                                        judul: judulToShow,
+                                                        dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                        dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                        dosenPembahas: item.DevisionOfLecturer.dosenPembahas,
+                                                        jadwalUjianKomprehensif: item.jadwalUjianKomprehensif
+                                                    }) %>
+                                                </div>
+                                                <div style="margin-top: 10px;">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <% if (item.DevisionOfLecturer) { %>
+                                                            <% if (item.DevisionOfLecturer.dosenPembimbing1 === username) { %>
+                                                                <% if (item.revisi1Komprehensif) { %>
+                                                                    <button type="button" class="btn btn-sm btn-primary2" style="background-color: #00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensif<%= item.id %>">
+                                                                    <span style="white-space: nowrap;">Edit Revisi</span>
+                                                                    </button>
+                                                                <% } else { %>
+                                                                    <button type="button" class="btn btn-sm btn-primary2" style="background-color: #00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensif<%= item.id %>">
+                                                                    <span style="white-space: nowrap;">Revisi</span>
+                                                                    </button>
+                                                                <% } %>
+                                                            <% } else if (item.DevisionOfLecturer.dosenPembimbing2 === username) { %>
+                                                                <% if (item.revisi2Komprehensif) { %>
+                                                                    <button type="button" class="btn btn-sm btn-primary2" style="background-color: #00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensif<%= item.id %>">
+                                                                    <span style="white-space: nowrap;">Edit Revisi</span>
+                                                                    </button>
+                                                                <% } else { %>
+                                                                    <button type="button" class="btn btn-sm btn-primary2" style="background-color: #00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensif<%= item.id %>">
+                                                                    <span style="white-space: nowrap;">Revisi</span>
+                                                                    </button>
+                                                                <% } %>
+                                                            <% } %>
+                                                        <% } %>
+                                                    </div>
+                                                    <%- include('./modals/addRevisiKomprehensif', {
+                                                        id: item.id,
+                                                        npm: item.npm,
+                                                        nama: item.nama,
+                                                        judul: judulToShow,
+                                                        dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                        dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                        revisi1Komprehensif: item.revisi1Komprehensif,
+                                                        revisi2Komprehensif: item.revisi2Komprehensif,
+                                                        jadwalUjianKomprehensif: item.jadwalUjianKomprehensif,
+                                                        tanggalRevisiDosen1Komprehensif: item.tanggalRevisiDosen1Komprehensif,
+                                                        tanggalRevisiDosen2Komprehensif: item.tanggalRevisiDosen2Komprehensif
+                                                    }) %>
+                                                    <!-- Revisi -->
+                                                    <div style="margin-top: 10px;">
+                                                        <div style="display: flex; justify-content: center;">
+                                                            <% if (item.DevisionOfLecturer) { %>
+                                                            <% if (item.DevisionOfLecturer.dosenPembimbing1 === username && item.komprehensifRevisiDosen1) { %>
+                                                             <button type="button" class="btn btn-sm btn-primary2" style="background-color: #00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensifPb1<%= item.id %>">
+                                                            <span style="white-space: nowrap;">Edit Rev Pb 1 </span>
+                                                            </button>
+                                                            <%- include('./modals/addRevisiKomprehensifPb1', {
+                                                                id: item.id,
+                                                                npm: item.npm,
+                                                                nama: item.nama,
+                                                                judul: judulToShow,
+                                                                dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                                dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                                komprehensifRevisiDosen1: item.
+                                                                komprehensifRevisiDosen1,
+                                                                komprehensifRevisiDosen2: item.komprehensifRevisiDosen2,
+                                                                tanggalRevisiDosen1Komprehensif: item.tanggalRevisiDosen1Komprehennsif,
+                                                                tanggalRevisiDosen2Komprehensif: item.tanggalRevisiDosen2Komprehensif
+                                                                }) %>
+                                                            <% } else if (item.DevisionOfLecturer.dosenPembimbing1 === username) { %>
+                                                            <button type="button" class="btn btn-sm btn-primary2" style="background-color:#00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensifPb1<%= item.id %>">
+                                                            <span style="white-space: nowrap;">Upload Rev Pb 1</span>
+                                                            </button>
+                                                            <%- include('./modals/addRevisiKomprehensifPb1', {
+                                                                id: item.id,
+                                                                npm: item.npm,
+                                                                nama: item.nama,
+                                                                judul: judulToShow,
+                                                                dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                                dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                                komprehensifRevisiDosen1: item.komprehensifRevisiDosen1,
+                                                                komprehensifRevisiDosen2: item.komprehensifRevisiDosen2,
+                                                                tanggalRevisiDosen1Komprehensif: item.tanggalRevisiDosen1Komprehensif,
+                                                                tanggalRevisiDosen2Komprehensif: item.tanggalRevisiDosen2Komprehensif
+                                                                }) %>
+                                                                </div>
+                                                            <% } else if (item.DevisionOfLecturer.dosenPembimbing2 === username && item.komprehensifRevisiDosen2) { %>
+                                                            <button type="button" class="btn btn-sm btn-primary2" style="background-color:  #00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensifPb2<%= item.id %>">
+                                                            <span style="white-space: nowrap;">Edit Revisi Pb 2 </span>
+                                                            </button>
+                                                            <%- include('./modals/addRevisiKomprehensifPb2', {
+                                                                id: item.id,
+                                                                npm: item.npm,
+                                                                nama: item.nama,
+                                                                judul: judulToShow,
+                                                                dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                                dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                                komprehensifRevisiDosen1: item.komprehensifRevisiDosen1,
+                                                                komprehensifRevisiDosen2: item.komprehensifRevisiDosen2,
+                                                                tanggalRevisiDosen1Komprehensif: item.tanggalRevisiDosen1Komprehensif,
+                                                                tanggalRevisiDosen2Komprehensif: item.tanggalRevisiDosen2Komprehensif
+                                                                }) %>
+                                                            <% } else if (item.DevisionOfLecturer.dosenPembimbing2 === username) { %>
+                                                            <button type="button" class="btn btn-sm btn-primary2" style="background-color:#00a89d; color: #FFF;" data-toggle="modal" data-target="#addRevisiKomprehensifPb2<%= item.id %>">
+                                                            <span style="white-space: nowrap;">Upload Rev Pb 2</span>
+                                                            </button>
+                                                            <%- include('./modals/addRevisiKomprehensifPb2', {
+                                                                id: item.id,
+                                                                npm: item.npm,
+                                                                nama: item.nama,
+                                                                judul: judulToShow,
+                                                                dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                                dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                                komprehensifRevisiDosen1: item.komprehensifRevisiDosen1,
+                                                                komprehensifRevisiDosen2: item.komprehensifRevisiDosen2,
+                                                                tanggalRevisiDosen1Komprehensif: item.
+                                                                tanggalRevisiDosen1Komprehensif,
+                                                                tanggalRevisiDosen2Komprehensif: item.tanggalRevisiDosen2Komprehensif
+                                                                }) %>
+                                                            </div>                                               
+                                                                <% } %>
+                                                            <% } %>
+                                                        </div>
+                                                    </td>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+<%- include('../layouts/footer') %>

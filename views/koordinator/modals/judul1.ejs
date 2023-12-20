@@ -1,0 +1,73 @@
+<% dataPengajuanJudul.forEach((item) => { %>
+    <div class="modal fade" id="addJudul1-<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="addJudul1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Judul 1</h4>
+                    </div>
+                    <div class="modal-body container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="npm">NPM</label>
+                                    <input class="form-control" type="number" name="npm" id="npm" value="<%= item.npm %>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input class="form-control" type="text" name="nama" id="nama" value="<%= item.nama %>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="judul1">Judul 1</label>
+                                    <input class="form-control" type="text" name="judul1" id="judul1" value="<%= item.judul1 %>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="latarBelakang">Latar Belakang</label>
+                                    <textarea class="form-control" name="latarBelakang" id="latarBelakang" style="height: 200px;"><%= item.latarBelakang %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="metode">Metode Pengembangan</label>
+                                    <input class="form-control" type="text" name="metode" id="metode" value="<%= item.metode %>" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="gambaran">Gambaran</label>
+                                    <textarea class="form-control" name="gambaran" id="gambaran" style="height: 200px;"><%= item.gambaran %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="referensiJurnal1">Referensi Jurnal 1</label>
+                                    <input class="form-control" type="text" name="referensiJurnal1" id="referensiJurnal1" value="<%= item.referensiJurnal1 %>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="referensiJurnal2">Referensi Jurnal 2</label>
+                                    <input class="form-control" type="text" name="referensiJurnal2" id="referensiJurnal2" value="<%= item.referensiJurnal2 %>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="referensiJurnal3">Referensi Jurnal 3</label>
+                                    <input class="form-control" type="text" name="referensiJurnal3" id="referensiJurnal3" value="<%= item.referensiJurnal3 %>"  required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggalPengajuan">Tanggal Pengajuan</label>
+                                    <% const date = new Date(item.tanggalPengajuan); %>
+                                    <% const options = {
+                                        weekday: 'long',
+                                        day: 'numeric',
+                                        month: 'long',
+                                        year: 'numeric',
+                                        }; %>
+                                        <% const formattedDate = date.toLocaleDateString('id-ID', 
+                                        options) + '. Pukul ' + date.toLocaleTimeString('id-ID', { 
+                                        hour12: false }) + ' WIB.'; %>
+                                    <input class="form-control" type="text" name="tanggalPengajuan" id="tanggalPengajuan" value="<%= formattedDate %>" required>                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% }) %>

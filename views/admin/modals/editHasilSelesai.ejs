@@ -1,0 +1,75 @@
+<div class="modal fade" id="editHasil<%= id %>" tabindex="-1" role="dialog" aria-labelledby="editHasilLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/admin/hasil-selesai/edit/<%= id %>" method="post">
+                <div class="modal-header">
+                    <h4>Edit Hasil Skripsi Selesai</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="npm">NPM</label>
+                                <input class="form-control w-25" type="number" name="npm" id="npm" value="<%= npm %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input class="form-control w-25" type="text" name="nama" id="nama" value="<%= nama %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="judul">Judul</label>
+                                <input class="form-control w-25" type="text" name="judul" id="judul" value="<%= judul 
+                           %>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembimbing1">Dosen Pembimbing 1</label>
+                                <input class="form-control w-25" type="text" name="dosenPembimbing1" id="dosenPembimbing1" value="<%= dosenPembimbing1 %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembimbing2">Dosen Pembimbing 2</label>
+                                <input class="form-control w-25" type="text" name="dosenPembimbing2" 
+                           id="dosenPembimbing2" value="<%= dosenPembimbing2 %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembahas">Dosen Pembahas</label>
+                                <input class="form-control w-25" type="text" name="dosenPembahas" 
+                           id="dosenPembahas" value="<%= dosenPembahas %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="jadwalSeminarHasil">Jadwal Seminar Hasil</label>
+                                <input class="form-control" type="datetime-local" name="jadwalSeminarHasil" id="jadwalSeminarHasil"value="<%= jadwalSeminarHasil ? new Date(jadwalSeminarHasil).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                            </div>                                                       
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary1">Ubah</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" type="text/css" href="../public/css/style.css">
+
+<style>
+    /* Style for 'Pending' option */
+    select#statusPersetujuan option[value="Judul 1 Diterima"] {
+        background-color: blue;
+        color: white;
+    }
+
+    /* Style for 'Diterima' option */
+    select#statusPersetujuan option[value="Judul 2 Diterima"] {
+        background-color: green;
+        color: white;
+    }
+
+    /* Style for 'Ditolak' option */
+    select#statusPersetujuan option[value="Judul Ditolak"] {
+        background-color: red;
+        color: white;
+    }
+</style>

@@ -1,0 +1,134 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+  <%- include('sidebarMahasiswa') %>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <!-- Navbar Mahasiswa -->
+      <%- include('../layouts/navbarTopMahasiswa', { id, username }) %>
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+        </div>
+        <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+        <!-- Display success messages -->
+        <% [addSuccess, addSuccess2, addSuccess3, addSuccess4].forEach(message => { %>
+          <% if (message.length !== 0) { %>
+            <div class="alert alert-<%= message.includes('error') ? 'danger' : 'success' %> alert-dismissible fade show" role="alert">
+              <strong><%= message %></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% } %>
+        <% }) %>
+
+        <% if (errorUploadProposal.length !== 0) { %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong><%= errorUploadProposal %></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      <% } %>
+
+
+        <!-- Content Row -->
+        <div class="card shadow mb-4">
+          <div class="card-body">
+            <div class="form">
+              <form action="/mahasiswa/proposal" method="post" enctype="multipart/form-data">
+                <div class="modal-body container">
+                  <% if (proposal) { %>
+                    <button type="button" class="btn" style="background-color: #00a89d; color: #FFF;" data-toggle="modal" data-target="#statusProposal" id="ajukanUlangButton">Lihat Status Proposal</button>
+                    <%- include('./modals/statusProposal') %>
+                    <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#ajukanUlang" id="ajukanUlangButton">Ajukan Ulang Proposal</button>
+                    <%- include('./modals/ajukanUlangProposal') %>
+                    <% } %>
+                    <% if (proposal) { %>
+                    <% if (proposal.revisi1 || proposal.revisi2) { %>
+                      <button type="button" class="btn btn-primary"  
+                      data-toggle="modal" data-target="#revisiPb1" id="revisiPb1Button">Upload Revisi 1</button>
+                      <%- include('./modals/uploadProposalRevisi') %>
+                      <button type="button" class="btn btn-primary" 
+                      data-toggle="modal" data-target="#revisiPb2" id="revisiPb2Button">Upload Revisi 2</button>
+                      <%- include('./modals/uploadProposalRevisi2') %>
+                      <% } %>
+                    <% } %>
+                  <br>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="npm">NPM</label>
+                        <input class="form-control" type="number" name="npm" id="npm" value="<%= profile.npm %>" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input class="form-control" type="text" name="nama" id="nama" value="<%= profile.nama %>" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="proposal">Proposal</label>
+                        <% if (proposal) { %>
+                          <input class="form-control" type="text" id="proposal" value="<%= proposal.proposal %>" disabled>
+                          <br>
+                          <a href="/mahasiswa/proposal/download/<%= proposal.id %>"
+                            download="<%= proposal.proposal.split('/').pop() %>"
+                            class="btn btn-primary">Unduh Proposal</a>
+                          <br>
+                          <br>
+                            <% if (proposal.revisi1 || proposal.revisi2) { %>
+                              <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#lihatRevisiPb1" id="lihatRevisiPb1Button">Lihat Revisi Pembimbing 1</button>
+                              <%- include('./modals/revisiPb1', {
+                                npm: proposal.npm,
+                                nama: proposal.nama,
+                                revisi1: proposal.revisi1,
+                                dosenPembimbing1: proposal.dosenPembimbing1
+                              }) %>
+                              <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#lihatRevisiPb2" id="lihatRevisiPb2Button">Lihat Revisi Pembimbing 2</button>
+                              <%- include('./modals/revisiPb2', {
+                                npm: proposal.npm,
+                                nama: proposal.nama,
+                                revisi2: proposal.revisi2,
+                                dosenPembimbing2: proposal.dosenPembimbing2
+                              }) %>
+                            <% } %>
+                        <% } else { %>
+                          <input class="form-control-file" type="file" accept="*/*" name="proposal" 
+                          id="proposal" required>
+                          <br>
+                          <% if (!proposal) { %>
+                          <button type="submit" class="btn" style="background-color: #325662; color: #FFF;
+                          ">Ajukan Bimbingan Proposal</button>
+                            <% } %>
+                            <% } %>
+                            </div>
+                            </div>
+                            </div>
+                          <div class="col">
+                          </div>
+                          </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+      <%- include('../layouts/footer') %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const downloadLink = document.querySelector('a[href^="/mahasiswa/proposal/download/"]');
+    let currentPageURL = window.location.href;
+    if (downloadLink) {
+      downloadLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        window.location.href = this.getAttribute('href');
+      });
+    }
+  });
+</script>
+

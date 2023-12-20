@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Komprehensif Selesai</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Komprehensif Selesai</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>NPM</th>
+        <th>Nama</th>
+        <th>Judul</th>
+        <th>Komprehensif Mahasiswa</th>
+        <th>Jadwal Ujian Komprehensif</th>
+        <th>Status Komprehensif</th>
+      </tr>
+      {{#each komprehensifSelesais }}
+      <tr>
+        <td>{{this.s_no}}</td>
+        <td>{{this.npm}}</td>
+        <td>{{this.nama}}</td>
+        <td>{{this.judul}}</td>
+        <td>{{this.komprehensif}}</td>
+        <td>{{this.jadwalUjianKomprehensif}}</td>
+        <td>{{this.statusKomprehensif}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('./sidebarAdmin') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Navbar Admin -->
+            <%- include('../layouts/navbarTopAdmin', { id, username }) %>
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+                </div>
+                
+                <!-- Content Row -->
+
+                <% if (addSuccess1.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold" style="color: #325662;">Data <%= title %></h6>
+                    </div>
+                    <br>
+                    <div style="color: red; margin-left: 20px;">Klik pada judul untuk mendapatkan info lebih detail</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="dt-buttons" style="display: flex; gap: 10px;">
+                                <form action="/admin/copy-judulDiterima" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Copy
+                                    </button>
+                                </form>
+                                <form action="/admin/csv-judulDiterima" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> CSV
+                                    </button>
+                                </form>
+                                <form action="/admin/excel-judulDiterima" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Excel
+                                    </button>
+                                </form>
+                                <form action="/admin/pdf-judulDiterima" method="POST">
+                                    <button type="submit" name="export" value="pdf" class="btn" 
+                                    style="background-color: #325662; color: #FFF;">
+                                        <i></i> PDF
+                                    </button>
+                                </form>
+                                <!-- <form action="/admin/print" method="POST"> -->
+                                    <!-- <button type="submit" name="export" value="pdf" class="btn"  -->
+                                    <!-- style="background-color: #325662; color: #FFF;"> -->
+                                        <!-- <i></i> Print -->
+                                    <!-- </button> -->
+                                <!-- </form> -->
+                            </div>                            
+                            <br>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NPM</th>
+                                        <th>Nama</th>
+                                        <th>Pembimbing 1</th>
+                                        <th>Pembimbing 2</th>
+                                        <th>Judul 1</th>
+                                        <th>Judul 2</th>
+                                        <th>Status Persetujuan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% dataPengajuanJudul.map((item, i) => { %>
+                                        <% if (item.statusPersetujuan === 'Judul 1 Diterima' || item.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                    <tr>
+                                        <td><%= i+1 %></td>
+                                        <td><%= item.npm %></td>
+                                        <td><%= item.nama %></td>
+                                        <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.dosenPembimbing1 : 
+                                            '-' %></td>
+                                        <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.dosenPembimbing2 : 
+                                            '-' %></td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#addJudul1-<%= item.id %>">Judul 1</a>
+                                            <%- include('./modals/judul1', {
+                                                id: item.id,
+                                                npm: item.npm,
+                                                nama: item.nama,
+                                                judul1: item.judul1,
+                                                latarBelakang: item.latarBelakang,
+                                                metode: item.metode,
+                                                gambaran: item.gambaran,
+                                                referensiJurnal1: item.referensiJurnal1,
+                                                referensiJurnal2: item.referensiJurnal2,
+                                                referensiJurnal3: item.referensiJurnal3,
+                                                tanggalPengajuan: item.tanggalPengajuan
+                                            }) %>
+                                        </td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#addJudul2-<%= item.id %>">Judul 2</a>
+                                            <%- include('./modals/judul2', {
+                                                id: item.id,
+                                                npm: item.npm,
+                                                nama: item.nama,
+                                                judul2: item.judul2,
+                                                latarBelakang: item.latarBelakang,
+                                                metode: item.metode,
+                                                gambaran: item.gambaran,
+                                                referensiJurnal1: item.referensiJurnal1,
+                                                referensiJurnal2: item.referensiJurnal2,
+                                                referensiJurnal3: item.referensiJurnal3,
+                                                tanggalPengajuan: item.tanggalPengajuan
+                                            }) %>
+                                        </td>
+                                        <td>
+                                            <span class="judul-badge <%= colors.getStatusColor(item.statusPersetujuan) %>">
+                                                <%= item.statusPersetujuan %>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+        <%- include('../layouts/footer') %>
+    </div>
+</div>
+
+  

@@ -1,0 +1,74 @@
+<div class="modal fade" id="addRevisiHasil<%= id %>" tabindex="-1" role="dialog" aria-labelledby="addRevisiHasilLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/dosen/bimbingan/hasil-skripsi-revisi/tambah/<%= id %>" method="post">
+                <div class="modal-header">
+                    <h4>Dosen Memberikan Revisi Bimbingan Hasil Skripsi Mahasiswa</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="npm">NPM</label>
+                                <input class="form-control w-25" type="number" name="npm" id="npm" value="<%= npm %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input class="form-control w-25" type="text" name="nama" id="nama" value="<%= nama %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="judul">Judul</label>
+                                <input class="form-control w-25" type="text" name="judul" id="judul" value="<%= judul %>" disabled>
+                            </div>
+                            <% if (
+                                (dosenPembimbing1 === username) ||
+                                (dosenPembimbing2 === username) 
+                            ) { %>
+                                <div class="form-group">
+                                    <label style="color: #4682B4; font-weight: bold" class="col-form-label">
+                                        <% if (dosenPembimbing1 === username) { %>
+                                            Dosen pembimbing 1 : <%= dosenPembimbing1 %>
+                                            <input type="hidden" name="dari" id="dari" value="terima_p1">
+                                        <% } else if (dosenPembimbing2 === username) { %>
+                                            Dosen pembimbing 2 : <%= dosenPembimbing2 %>
+                                            <input type="hidden" name="dari" id="dari" value="terima_p2">
+                                        <% } %>
+                                    </label>
+                                </div>
+                            <% } %>
+                            <div class="form-group">
+                                <% if (dosenPembimbing1 || dosenPembimbing2) { %>
+                                <% if (dosenPembimbing1 === username) { %>
+                                <label for="revisi1">Revisi 1</label>
+                                <textarea class="form-control" name="revisi1" id="revisi1" style="height: 300px;"><%= revisi1 %> </textarea>
+                                <% } else if (dosenPembimbing2 === username) { %>
+                                <label for="revisi2">Revisi 2</label>
+                                <textarea class="form-control" name="revisi2" id="revisi2" style="height: 300px;"><%= revisi2 %> </textarea>
+                            <% } %>
+                        <% } %>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <% if (dosenPembimbing1 || dosenPembimbing2) { %>
+                                <% if (dosenPembimbing1 === username) { %>
+                                <label for="tanggalRevisiDosen1">Tanggal Dosen Pembimbing 1 Memberikan Revisi</label>
+                                <input class="form-control" type="datetime-local" name="tanggalRevisiDosen1" id="tanggalRevisiDosen1" value="<%= tanggalRevisiDosen1 ? new Date(tanggalRevisiDosen1).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                                <% } else if (dosenPembimbing2 === username) { %>
+                                <label for="tanggalRevisiDosen2">Tanggal Dosen Pembimbing 2 Memberikan Revisi</label>
+                                <input class="form-control" type="datetime-local" name="tanggalRevisiDosen2" id="tanggalRevisiDosen2" value="<%= tanggalRevisiDosen2 ? new Date(tanggalRevisiDosen2).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary1">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="../public/css/style.css">

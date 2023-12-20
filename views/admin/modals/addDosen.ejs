@@ -1,0 +1,46 @@
+<div class="modal fade" id="addDosen" tabindex="-1" role="dialog" aria-labelledby="addDosenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form action="/admin/dosen/tambah" method="post">
+                <div class="modal-header">
+                    <h4>Tambah Dosen</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="nip">NIP</label>
+                                <input class="form-control" type="number" name="nip" id="nip" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input class="form-control" type="text" name="nama" id="nama" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="password" name="password" id="password" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="foto">Foto</label>
+                                <input class="form-control-file" type="file" accept="image/jpeg, image/png" name="foto" id="foto">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Tambah</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

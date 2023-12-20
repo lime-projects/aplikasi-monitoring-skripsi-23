@@ -1,0 +1,80 @@
+<div class="modal fade" id="editSelesaiKomprehensif<%= id %>" tabindex="-1" role="dialog" aria-labelledby="editSelesaiKomprehensifLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/koordinator-skripsi/komprehensif-terjadwal-selesai/edit/<%= id %>" method="post">
+                <div class="modal-header">
+                    <h4>Edit Hasil Skripsi Terjadwal Selesai</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="npm">NPM</label>
+                                <input class="form-control w-25" type="number" name="npm" id="npm" value="<%= npm %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input class="form-control w-25" type="text" name="nama" id="nama" value="<%= nama %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="judul">Judul</label>
+                                <input class="form-control w-25" type="text" name="judul" id="judul" value="<%= judul 
+                           %>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembimbing1">Dosen Pembimbing 1</label>
+                                <input class="form-control w-25" type="text" name="dosenPembimbing1" id="dosenPembimbing1" value="<%= dosenPembimbing1 %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembimbing2">Dosen Pembimbing 2</label>
+                                <input class="form-control w-25" type="text" name="dosenPembimbing2" 
+                           id="dosenPembimbing2" value="<%= dosenPembimbing2 %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembahas">Dosen Pembahas</label>
+                                <input class="form-control w-25" type="text" name="dosenPembahas" 
+                           id="dosenPembahas" value="<%= dosenPembahas %>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="jadwalUjianKomprehensif">Jadwal Ujian Komprehensif</label>
+                                <input class="form-control" type="datetime-local" name="jadwalUjianKomprehensif" id="jadwalUjianKomprehensif"value="<%= jadwalUjianKomprehensif ? new Date(jadwalUjianKomprehensif).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                            </div>                                                       
+                            <label for="statusKomprehensif">Status Komprehensif</label>
+                            <div class="form-select">
+                            <select name="statusKomprehensif" id="statusKomprehensif" style="width: 750px;">
+                                <option value="Disetujui" class="bg-green text-white">Disetujui</option>
+                                <option value="Selesai" class="bg-blue text-white">Selesai</option>
+                                <option value="Diproses" class="bg-orange text-white">Diproses</option>
+                            </select>
+                        </div> 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary1">Ubah</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" type="text/css" href="../public/css/style.css">
+
+<style>
+    select#statusKomprehensif option[value="Disetujui"] {
+        background-color: green;
+        color: white;
+    }
+
+    select#statusKomprehensif option[value="Selesai"] {
+        background-color: blue;
+        color: white;
+    }
+
+    select#statusKomprehensif option[value="Diproses"] {
+        background-color: orange;
+        color: white;
+    }
+</style>
+

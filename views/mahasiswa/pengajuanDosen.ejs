@@ -1,0 +1,143 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('sidebarMahasiswa') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <link rel="stylesheet" href="/public/css/style.css">
+        <meta name="timezone" content="Asia/Jakarta">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Navbar Mahasiswa -->
+            <%- include('../layouts/navbarTopMahasiswa', { id, username }) %>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+                </div>
+
+                <% if (addSuccess.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                
+                <% if (telahMengajukan.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= telahMengajukan %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (tahunAkademikMati.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= tahunAkademikMati %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                
+                <% if (tahunAkademikMati1.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= tahunAkademikMati1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- Content Row -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="modal-footerr">
+                            <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-toggle="modal" data-target="#addDosen" href="<%= profile.id %>">Lihat Daftar Dosen</button>
+                            <%- include('./modals/daftarPembimbing') %>
+                        </div>
+                                   
+                        <% if (pengajuanDosen) { %>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="dosenPembimbing1">Pembimbing 1</label> 
+                                    <br>
+                                    <% if (pengajuanDosen.statusPembimbing1) { %>
+                                        <label>Status dosen pembimbing 1 yang anda ajukan :</label>
+                                        <span class="judul-badge <%= colors.getStatusColor1(pengajuanDosen.statusPembimbing1) %>">
+                                        <label><%= pengajuanDosen.statusPembimbing1 %></label>
+                                        <% } else { %>
+                                            <label>Status dosen pembimbing 1 yang anda ajukan : <span style="color: orange;"><strong>(Menunggu persetujuan dari program studi)</strong></span></label>
+                                        <% } %>                                        
+                                    <input class="form-control" type="text" name="dosenPembimbing1" id="dosenPembimbing1" value="<%= pengajuanDosen.dosenPembimbing1 %>" disabled>
+                                </div>
+                            </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="dosenPembimbing1">Pembimbing 2</label> 
+                                        <br>
+                                        <% if (pengajuanDosen.statusPembimbing2) { %>
+                                            <label>Status dosen pembimbing 2 yang anda ajukan :</label>
+                                            <span class="judul-badge <%= colors.getStatusColor2(pengajuanDosen.statusPembimbing2) %>">
+                                            <label><%= pengajuanDosen.statusPembimbing2 %></label>
+                                            <% } else { %>
+                                                <label>Status dosen pembimbing 2 yang anda ajukan : <span style="color: 
+                                           orange;"><strong>(Menunggu persetujuan dari program studi)</strong></span></label>
+                                            <% } %>                                        
+                                        <input class="form-control" type="text" name="dosenPembimbing2" id="dosenPembimbing2" 
+                                        value="<%= pengajuanDosen.dosenPembimbing2 %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="dosenPembahas">Pembahas</label> 
+                                        <br>
+                                        <% if (pengajuanDosen.statusPembahas) { %>
+                                            <label>Status dosen pembahas yang anda ajukan :</label>
+                                            <span class="judul-badge <%= colors.getStatusColor3(pengajuanDosen.
+                                          statusPembahas) %>">
+                                            <label><%= pengajuanDosen.statusPembahas %></label>
+                                            <% } else { %>
+                                                <label>Status dosen pembahas yang anda ajukan : <span style="color: 
+                                           orange;"><strong>(Menunggu persetujuan dari program studi)</strong></span></label>
+                                            <% } %>                                        
+                                        <input class="form-control" type="text" name="dosenPembahas" id="dosenPembahas" 
+                                        value="<%= pengajuanDosen.dosenPembahas %>" disabled>
+                                    </div>
+                                </div>
+                        <% } else { %>
+                            <div class="col">
+                                <div class="form-group">
+                                    <h6 style="color: red;">Anda belum mengajukan dosen pembimbing dan pembahas</h6>
+                                    <label for="dosenPembimbing1">Pembimbing 1</label> 
+                                    <br>
+                                    <input class="form-control" type="text" name="dosenPembimbing1" id="dosenPembimbing1" value="-" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dosenPembimbing2">Pembimbing 2</label> 
+                                    <br>
+                                    <input class="form-control" type="text" name="dosenPembimbing2" id="dosenPembimbing2" 
+                                    value="-" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dosenPembahas">Pembahas</label> 
+                                    <br>
+                                    <input class="form-control" type="text" name="dosenPembahas" id="dosenPembahas" 
+                                    value="-" disabled>
+                                </div>
+                                </div>
+                        <% } %>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- End of Main Content -->
+            <%- include('../layouts/footer') %>

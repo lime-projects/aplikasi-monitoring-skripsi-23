@@ -1,0 +1,35 @@
+<div class="modal fade" id="editPembahasModal" tabindex="-1" role="dialog" aria-labelledby="#editPembahasModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/admin/pembagian-dosen/editDosen/<%= id %>" method="post" id="editPembahasForm" data-mahasiswa-id="">
+                <div class="modal-header">
+                    <h4>Daftar Dosen Pembimbing dan Pembahas</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="newDosenPembahas">Pembahas</label>
+                                <select class="form-control" name="newDosenPembahas" id="newDosenPembahas" 
+                                required>
+                                    <option value=""><%= dosenPembahas %></option>
+                                    <% daftarPb3.forEach(dosen => { %>
+                                        <option value="<%= dosen.dosenPembahas %>"><%= dosen.dosenPembahas
+                                   %></option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

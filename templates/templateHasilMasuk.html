@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Bimbingan Hasil Masuk</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Bimbingan Hasil Masuk</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>NPM</th>
+        <th>Nama</th>
+        <th>Judul</th>
+        <th>Dosen Pembimbing 1</th>
+        <th>Dosen Pembimbing 2</th>
+        <th>Dosen Pembahas</th>
+        <th>Tanggal Pengajuan</th>
+        <th>Hasil Skripsi Mahasiswa</th>
+        <th>Jadwal Seminar Hasil</th>
+      </tr>
+      {{#each hasilMasuks }}
+      <tr>
+        <td>{{this.s_no}}</td>
+        <td>{{this.npm}}</td>
+        <td>{{this.nama}}</td>
+        <td>{{this.judul}}</td>
+        <td>{{this.dosenPembimbing1}}</td>
+        <td>{{this.dosenPembimbing2}}</td>
+        <td>{{this.dosenPembahas}}</td>
+        <td>{{this.tanggalPengajuan}}</td>
+        <td>{{this.hasilSkripsi}}</td>
+        <td>{{this.jadwalSeminarHasil}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

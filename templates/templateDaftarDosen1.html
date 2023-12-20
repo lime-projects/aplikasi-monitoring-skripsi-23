@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Daftar Dosen Pembimbing 1</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Daftar Dosen Pembimbing 1</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>Dosen Pembimbing 1</th>
+      </tr>
+      {{#each lecturer1s}}
+      <tr>
+        <td>{{this.no}}</td>
+        <td>{{this.dosenPembimbing1}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

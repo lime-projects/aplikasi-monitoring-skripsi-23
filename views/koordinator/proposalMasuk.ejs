@@ -1,0 +1,194 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('./sidebarKoor') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Navbar Koor -->
+            <%- include('../layouts/navbarTopKoor', { id, username }) %>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">
+                        <%= title %>
+                    </h1>
+                </div>
+                <!-- Content Row -->
+                <% if (addSuccess1.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold" style="color: #325662;">Data <%= title %></h6>
+                    </div>
+                    <br>
+                    <div style="color: red; margin-left: 20px;"> Input jadwal seminar proposal apabila telah di acc untuk seminar proposal dan telah mendapatkan jadwal dari dosen pembimbing 1, dosen 
+                   pembimbing 2, dan dosen pembahas.</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="dt-buttons" style="display: flex; gap: 10px;">
+                                <form action="/koordinator-skripsi/copy-proposalMasuk" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Copy
+                                    </button>
+                                </form>
+                                <form action="/koordinator-skripsi/csv-proposalMasuk" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> CSV
+                                    </button>
+                                </form>
+                                <form action="/koordinator-skripsi/excel-proposalMasuk" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Excel
+                                    </button>
+                                </form>
+                                <form action="/koordinator-skripsi/pdf-proposalMasuk" method="POST">
+                                    <button type="submit" name="export" value="pdf" class="btn" 
+                                    style="background-color: #325662; color: #FFF;">
+                                        <i></i> PDF
+                                    </button>
+                                </form>
+                                <!-- <form action="/admin/print" method="POST"> -->
+                                    <!-- <button type="submit" name="export" value="pdf" class="btn"  -->
+                                    <!-- style="background-color: #325662; color: #FFF;"> -->
+                                        <!-- <i></i> Print -->
+                                    <!-- </button> -->
+                                <!-- </form> -->
+                            </div> 
+                            <br>                           
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NPM</th>
+                                        <th>Nama</th>
+                                        <th>Judul</th>
+                                        <th>Pembimbing 1</th>
+                                        <th>Pembimbing 2</th>
+                                        <th>Pembahas</th>
+                                        <th>Tanggal Pengajuan</th>
+                                        <th>Proposal</th>
+                                        <th>Jadwal Seminar Proposal</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% dataProposal.filter(item => !item.jadwalSeminarProposal).map((item, i) => { %>
+                                        <tr>
+                                            <td><%= i+1 %></td>
+                                            <td><%= item.npm %></td>
+                                            <td><%= item.nama %></td>
+                                            <td>
+                                                <% if (item.TitleSubmission) { %>
+                                                  <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                                                    <%= item.TitleSubmission.judul1 %>
+                                                  <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                                    <%= item.TitleSubmission2.judul2 %>
+                                                  <% } else { %>
+                                                    -
+                                                  <% } %>
+                                                <% } else { %>
+                                                  -
+                                                <% } %>
+                                                <% var judulToShow; %>
+                                                    <% if (item.TitleSubmission) { %>
+                                                    <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                                                        <% judulToShow = item.TitleSubmission.judul1; %>
+                                                    <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                                        <% judulToShow = item.TitleSubmission2.judul2; %>
+                                                    <% } else { %>
+                                                        <% judulToShow = '-'; %>
+                                                    <% } %>
+                                                    <% } else { %>
+                                                    <% judulToShow = '-'; %>
+                                                    <% } %>
+                                                </td>
+                                            <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.dosenPembimbing1 : '-' %></td>
+                                            <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.dosenPembimbing2 : '-' %></td>
+                                            <td><%= item.DevisionOfLecturer ? item.DevisionOfLecturer.
+                                                dosenPembahas : '-' %></td>
+                                            <td>
+                                                <% const timezone = 'Asia/Jakarta' %>
+                                                <% const date = new Date(item.tanggalPengajuan); %>
+                                                <% const options = {
+                                                    timeZone: timezone,
+                                                    weekday: 'long',
+                                                    day: 'numeric',
+                                                    month: 'long',
+                                                    year: 'numeric',
+                                                }; %>
+                                                <% const formattedDate = date.toLocaleDateString('id-ID', options) 
+                                           + '. Pukul ' + date.toLocaleTimeString('id-ID', { hour12: false }) 
+                                           + ' WIB.'; %>
+                                                <p><%= formattedDate %></p>
+                                            </td>
+                                            <td>
+                                                <% if (item.proposal) { %>
+                                                  <a href="/koordinator-skripsi/proposal/download/<%= item.id %>">
+                                                    <%= item.proposal.split('/').pop() %>
+                                                  </a>
+                                                <% } else { %>
+                                                  -
+                                                <% } %>
+                                              </td>
+                                            <td>
+                                                <% if (item.jadwalSeminarProposal) { %>
+                                                    <% const timezone = 'Asia/Jakarta' %>
+                                                    <% const date = new Date(item.jadwalSeminarProposal); %>
+                                                    <% const options = {
+                                                        timeZone: timezone,
+                                                        weekday: 'long',
+                                                        day: 'numeric',
+                                                        month: 'long',
+                                                        year: 'numeric',
+                                                    }; %>
+                                                    <% const formattedDate = date.toLocaleDateString('id-ID', options) + 
+                                                     '. Pukul ' + date.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB.';%>
+                                                    <p><%= formattedDate %></p>
+                                                <% } else { %>
+                                                    Tidak ada jadwal
+                                                <% } %>
+                                            </td>                                            
+                                            <td>
+                                                <div style="display: flex; justify-content: center;">
+                                                <button class="btn i btn-sm btn-warning" data-toggle="modal" data-target="#editProposal<%= item.id %>">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <%- include('./modals/editProposalMasuk', {
+                                                    id: item.id,
+                                                    npm: item.npm,
+                                                    nama: item.nama,
+                                                    judul: judulToShow,
+                                                    dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                    dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                    dosenPembahas: item.DevisionOfLecturer.dosenPembahas,
+                                                    jadwalSeminarProposal: item.jadwalSeminarProposal
+                                                }) %>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+<%- include('../layouts/footer') %>

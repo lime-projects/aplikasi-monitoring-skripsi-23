@@ -1,0 +1,75 @@
+<!-- File: views/templatePrint.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Dosen</title>
+  <style>
+    /* CSS styles for the table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Daftar Dosen</h1>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>ID</th>
+        <th>NIP</th>
+        <th>Nama</th>
+        <th>Gender</th>
+        <th>Password</th>
+        <th>Foto</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <!-- Data dari JavaScript akan dimasukkan di sini -->
+    </tbody>
+  </table>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async function() {
+      const tableBody = document.getElementById('table-body');
+
+      try {
+        const response = await fetch('/admin/print', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+        const data = await response.json();
+
+        let tableRows = '';
+
+        data.forEach((dosen, index) => {
+          tableRows += `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${dosen._id || 'N/A'}</td>
+              <td>${dosen.nip || 'N/A'}</td>
+              <td>${dosen.nama || 'N/A'}</td>
+              <td>${dosen.gender || 'N/A'}</td>
+              <td>${dosen.password || 'N/A'}</td>
+              <td>${dosen.foto || 'N/A'}</td>
+            </tr>
+          `;
+        });
+
+        tableBody.innerHTML = tableRows; // Masukkan baris ke dalam tabel
+      } catch (error) {
+        console.error('Gagal mendapatkan data dosen:', error);
+      }
+    });
+  </script>
+</body>
+</html>

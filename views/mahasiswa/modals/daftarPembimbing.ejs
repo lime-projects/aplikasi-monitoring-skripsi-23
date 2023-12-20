@@ -1,0 +1,73 @@
+<div class="modal fade" id="addDosen" tabindex="-1" role="dialog" aria-labelledby="addDosenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/mahasiswa/pengajuan-dosen"  method="post" onsubmit="return validateForm()">
+                <div class="modal-header">
+                    <h4>Daftar Dosen Pembimbing dan Pembahas</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="dosenPembimbing1">Pembimbing 1</label>
+                                <select class="form-control" name="dosenPembimbing1" id="dosenPembimbing1" required>
+                                    <option value="" selected disabled>== Pilih Satu ==</option>
+                                    <% if (pengajuanDosen && pengajuanDosen.dosenPembimbing1) { %>
+                                        <option value="<%= pengajuanDosen.dosenPembimbing1 %>" selected><%= pengajuanDosen.dosenPembimbing1 %></option>
+                                    <% } %>
+                                     <% daftarPb1.forEach(dosen => { %>
+                                        <option value="<%= dosen.dosenPembimbing1 %>"><%= dosen.dosenPembimbing1 %></option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembimbing2">Pembimbing 2</label>
+                                <select class="form-control" name="dosenPembimbing2" id="dosenPembimbing2" required>
+                                    <option value="" selected disabled>== Pilih Satu ==</option>
+                                    <% if (pengajuanDosen && pengajuanDosen.dosenPembimbing2) { %>
+                                        <option value="<%= pengajuanDosen.dosenPembimbing2 %>" selected><%= pengajuanDosen.dosenPembimbing2 %></option>
+                                    <% } %>
+                                    <% daftarPb2.forEach(dosen => { %>
+                                        <option value="<%= dosen.dosenPembimbing2 %>"><%= dosen.dosenPembimbing2 
+                                   %></option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosenPembahas">Pembahas</label>
+                                <select class="form-control" name="dosenPembahas" id="dosenPembahas" required>
+                                    <option value="" selected disabled>== Pilih Satu ==</option>
+                                    <% if (pengajuanDosen && pengajuanDosen.dosenPembahas) { %>
+                                        <option value="<%= pengajuanDosen.dosenPembahas %>" selected><%= pengajuanDosen.dosenPembahas %></option>
+                                    <% } %>
+                                    <% daftarPb3.forEach(dosen => { %>
+                                        <option value="<%= dosen.dosenPembahas %>"><%= dosen.dosenPembahas
+                                   %></option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="cannot_be_changed" id="cannot_be_changed" required>
+                                <label for="cannot_be_changed">Data yang telah diajukan tidak dapat diubah</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;" href="/mahasiswa/pengajuanDosen">Ajukan Dosen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        var checkbox = document.getElementById("cannot_be_changed");
+        if (!checkbox.checked) {
+            alert("Anda harus mencentang kotak 'Data yang telah diajukan tidak dapat diubah' sebelum mengajukan dosen.");
+            return false;
+        }
+        return true; 
+    }
+    </script>

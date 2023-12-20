@@ -1,0 +1,32 @@
+<div class="modal fade" id="editP1Modal" tabindex="-1" role="dialog" aria-labelledby="#editP1Modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form action="/koordinator-skripsi/pembagian-dosen/editDosen/<%= id %>" method="post" id="editP1Form" data-mahasiswa-id="">
+                    <div class="modal-header">
+                        <h4>Daftar Dosen Pembimbing dan Pembahas</h4>
+                    </div>
+                    <div class="modal-body container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="newDosenPembimbing1">Pembimbing 1</label>
+                                    <select class="form-control" name="newDosenPembimbing1" id="newDosenPembimbing1" required>
+                                        <option value=""><%= dosenPembimbing1 %></option>
+                                        <% daftarPb1.forEach(dosen => { %>
+                                            <option value="<%= dosen.dosenPembimbing1.id %>"><%= dosen.dosenPembimbing1
+                                       %></option>
+                                            <% }); %>
+                                    </select>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    

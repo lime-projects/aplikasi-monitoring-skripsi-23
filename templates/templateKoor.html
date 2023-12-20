@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Koordinator</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Koordinator</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>NIP</th>
+        <th>Nama</th>
+        <th>Gender</th>
+        <th>Password</th>
+        <th>Foto</th>
+      </tr>
+      {{#each coors}}
+      <tr>
+        <td>{{this.no}}</td>
+        <td>{{this.nip}}</td>
+        <td>{{this.nama}}</td>
+        <td>{{this.gender}}</td>
+        <td>{{this.password}}</td>
+        <td>{{this.foto}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

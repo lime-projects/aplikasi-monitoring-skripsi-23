@@ -1,0 +1,40 @@
+<div class="modal fade" id="revisiPb1" tabindex="-1" role="dialog" aria-labelledby="revisiPb1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/mahasiswa/hasil-skripsi-revisi" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4>Upload Revisi Bimbingan Hasil</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                              <label for="hasilSkripsiRevisi1">Revisi Bimbingan Hasil dengan Dosen pembimbing 1</label>
+                                <% if (hasilSkripsi.hasilSkripsiRevisi1) { %>
+                                    <input class="form-control" type="text" id="hasilSkripsiRevisi1" value="<%= hasilSkripsi.hasilSkripsiRevisi1 %>" disabled>
+                                    <br style="margin-top: 10px;">
+                                    <a href="/mahasiswa/hasil-skripsi-revisi/download/<%= hasilSkripsi.id %>" download="<%= hasilSkripsi.hasilSkripsiRevisi1.split('/').pop() %>" class="btn btn-primary">Unduh Revisi Hasil Skripsi</a>
+                                    <br><br>
+                                    <input class="form-control-file" type="file" accept="*/*" 
+                                    name="hasilSkripsiRevisi1" id="hasilSkripsiRevisi1" required>
+                                  <% } else { %>
+                                    <input class="form-control-file" type="file" accept="*/*" name="hasilSkripsiRevisi1" id="hasilSkripsiRevisi1" required>
+                                  <% } %>
+                                </div>
+                              <div class="form-group">
+                                <label for="tanggalRevisiMahasiswa1">Tanggal Mahasiswa Revisi</label>
+                                <input class="form-control" type="datetime-local" name="tanggalRevisiMahasiswa1" id="tanggalRevisiMahasiswa1" value="<%= hasilSkripsi.tanggalRevisiMahasiswa1 ? new Date(hasilSkripsi.tanggalRevisiMahasiswa1).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                        </div>
+                    </div>
+                </div>
+                <div style="color: red; margin-left: 5px;">Anda dapat mengupload hasil skripsi yang telah diperbaharui.</div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Kirim</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  

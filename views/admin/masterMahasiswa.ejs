@@ -1,0 +1,183 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('./sidebarAdmin') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Navbar Admin -->
+            <%- include('../layouts/navbarTopAdmin') %>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800"><%= title %></h1>
+                    <div class="button-group">
+                      <button type="button" data-toggle="modal" data-target="#addMahasiswa" class="d-none d-sm-inline-block btn btn-sm shadow-sm" style="background-color: #325662; color: white;">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> Add Data
+                      </button>
+                      <%- include('./modals/addMahasiswa') %>
+                    </div>
+                  </div>
+                  
+                <!-- Content Row -->
+                <!-- Alert -->
+                <% if (addSuccess.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if (addSuccess1.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if (addSuccess2.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess2 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if (deleteSuccess.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= deleteSuccess %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if (editSuccess.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= editSuccess %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <% if (importError.length !== 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= importError %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold" style="color: #325662;">Master Data Mahasiswa</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="dt-buttons" style="display: flex; gap: 10px;">
+                                <form action="/admin/copy-mahasiswa" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Copy
+                                    </button>
+                                </form>
+                                <form action="/admin/csv-mahasiswa" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> CSV
+                                    </button>
+                                </form>
+                                <form action="/admin/excel-mahasiswa" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Excel
+                                    </button>
+                                </form>
+                                <form action="/admin/pdf-mahasiswa" method="POST">
+                                    <button type="submit" name="export" value="pdf" class="btn" 
+                                    style="background-color: #325662; color: #FFF;">
+                                        <i></i> PDF
+                                    </button>
+                                </form>
+                                <!-- <form action="/admin/print-mahasiswa" method="POST"> -->
+                                    <!-- <button type="submit" name="export" value="pdf" class="btn"  -->
+                                    <!-- style="background-color: #325662; color: #FFF;"> -->
+                                        <!-- <i></i> Print -->
+                                    <!-- </button> -->
+                                <!-- </form> -->
+                            </div> 
+                            <br>                           
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NPM</th>
+                                        <th>Nama</th>
+                                        <th>Gender</th>
+                                        <th>Angkatan</th>
+                                        <th>Foto</th>
+                                        <th style="width: 10%;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% masterMahasiswa.map((item, i) => { %>
+                                        <tr>
+                                            <td><%= i+1 %></td>
+                                            <td><%= item.npm %></td>
+                                            <td><%= item.nama %></td>
+                                            <td><%= item.gender %></td>
+                                            <td><%= item.angkatan %></td>
+                                            <td><%= item.foto %></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editMahasiswa<%= item.id %>">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <%- include('./modals/editMahasiswa', {
+                                                    id: item.id,
+                                                    npm: item.npm,
+                                                    nama: item.nama,
+                                                    gender: item.gender,
+                                                    angkatan: item.angkatan,
+                                                    foto: item.foto,
+                                                    student: item.id,
+                                                    fotoPath: item.fotoPath
+                                                }) %>
+                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteMahasiswa<%= item.id %>">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                                <%- include('../admin/modals/deleteMahasiswa', {
+                                                    id: item.id,
+                                                    nama: item.nama,
+                                                    npm: item.npm
+                                                }) %>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+<%- include('../layouts/footer') %>
+
+<script>
+document.getElementById('foto').addEventListener('change', function(e) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('mahasiswa-foto').src = e.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+});
+</script>

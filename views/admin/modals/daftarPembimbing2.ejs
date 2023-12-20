@@ -1,0 +1,35 @@
+<div class="modal fade" id="editP2Modal" tabindex="-1" role="dialog" aria-labelledby="#editP2Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="/admin/pembagian-dosen/editDosen/<%= id %>" method="post" id="editP2Form" data-mahasiswa-id="">
+                <div class="modal-header">
+                    <h4>Daftar Dosen Pembimbing dan Pembahas</h4>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="newDosenPembimbing2">Pembimbing 2</label>
+                                <select class="form-control" name="newDosenPembimbing2" id="newDosenPembimbing2" 
+                                required>
+                                    <option value=""><%= dosenPembimbing2 %></option>
+                                    <% daftarPb2.forEach(dosen => { %>
+                                        <option value="<%= dosen.dosenPembimbing2 %>"><%= dosen.dosenPembimbing2 
+                                   %></option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

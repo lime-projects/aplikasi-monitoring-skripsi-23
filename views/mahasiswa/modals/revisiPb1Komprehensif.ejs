@@ -1,0 +1,55 @@
+<div class="modal fade" id="lihatRevisiPb1" tabindex="-1" role="dialog" aria-labelledby="lihatRevisiPb1Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <form action="/mahasiswa/komprehensif-revisi" method="post" enctype="multipart/form-data">
+              <div class="modal-header">
+                  <h4>Lihat Revisi Pembimbing 1</h4>
+              </div>
+              <div class="modal-body container">
+                  <div class="row">
+                      <div class="col">
+                          <div class="form-group">
+                              <label for="npm">NPM</label>
+                              <input class="form-control" type="number" name="npm" id="npm" value="<%= npm %>" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label for="nama">Nama</label>
+                              <input class="form-control" type="text" name="nama" id="nama" value="<%= nama %>" disabled>
+                          </div>
+                          <% dataKomprehensif.map((item, i) => { %>
+                              <div class="form-group">
+                                  <label style="color: #4682B4; font-weight: bold;">Dosen Pembimbing 1:</label>
+                                  <span style="color: #4682B4; font-weight: bold;"><%= item.DevisionOfLecturer.dosenPembimbing1 %></span>
+                              </div>
+                          <% }) %>
+                          <div class="form-group">
+                              <label for="revisi1Komprehensif">Revisi</label>
+                              <textarea class="form-control" name="revisi1Komprehensif" id="revisi1Komprehensif" style="height: 300px;" disabled><%= komprehensif.revisi1Komprehensif %></textarea>
+                          </div>
+                          <div class="form-group">
+                            <br>
+                            <label for="komprehensifRevisiDosen1">Revisi Bimbingan Komprehensif dari Dosen: </label>
+                            <% if (komprehensif.komprehensifRevisiDosen1) { %>
+                              <a href="/mahasiswa/komprehensif-revisi/download-dosen1/<%= komprehensif.id %>">
+                                <%= komprehensif.komprehensifRevisiDosen1.split('/').pop() %>
+                              </a>
+                            <% } else { %>
+                              -
+                            <% } %> 
+                          </div>                      
+                          <div class="form-group">
+                            <label for="tanggalRevisiDosen1Komprehensif">Tanggal Dosen Memberikan Revisi</label>
+                            <input class="form-control" type="datetime-local" name="tanggalRevisiDosen1Komprehensif" id="tanggalRevisiDosen1Komprehensif" value="<%= komprehensif.tanggalRevisiDosen1Komprehensif ? new Date(komprehensif.tanggalRevisiDosen1Komprehensif).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : ''%>" disabled>
+                        </div>                            
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn" style="background-color: #325662; color: #FFF;" data-dismiss="modal">Kembali</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+

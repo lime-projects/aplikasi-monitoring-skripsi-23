@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Data Bimbingan Komprehensif Mahasiswa</title>
+  </head>
+  <body>
+    <center>
+      <h1>Data Bimbingan Komprehensif Mahasiswa</h1>
+    </center>
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <tr>
+        <th>No</th>
+        <th>NPM</th>
+        <th>Nama</th>
+        <th>Judul</th>
+        <th>Dosen Pembimbing 1</th>
+        <th>Dosen Pembimbing 2</th>
+        <th>Dosen Pembahas</th>
+        <th>Tanggal Pengajuan</th>
+        <th>Komprehensif</th>
+        <th>Status Komprehensif</th>
+        <th>Jadwal Ujian Komprehensif</th>
+      </tr>
+      {{#each komprehensifs }}
+      <tr>
+        <td>{{this.s_no}}</td>
+        <td>{{this.npm}}</td>
+        <td>{{this.nama}}</td>
+        <td>{{this.judul}}</td>
+        <td>{{this.dosenPembimbing1}}</td>
+        <td>{{this.dosenPembimbing2}}</td>
+        <td>{{this.dosenPembahas}}</td>
+        <td>{{this.tanggalPengajuan}}</td>
+        <td>{{this.komprehensif}}</td>
+        <td>{{this.statusKomprehensif}}</td>
+        <td>{{this.jadwalUjianKomprehensif}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+<%- include('../layouts/header') %>
+<div id="wrapper">
+    <%- include('./sidebarKoor') %>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Navbar Koor -->
+            <%- include('../layouts/navbarTopKoor', { id, username }) %>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">
+                        <%= title %>
+                    </h1>
+                </div>
+                <!-- Content Row -->
+                <% if (addSuccess1.length !== 0) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><%= addSuccess1 %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold" style="color: #325662;">Data <%= title %></h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="dt-buttons" style="display: flex; gap: 10px;">
+                                <form action="/koordinator-skripsi/copy-proposalTerjadwal" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Copy
+                                    </button>
+                                </form>
+                                <form action="/koordinator-skripsi/csv-proposalTerjadwal" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> CSV
+                                    </button>
+                                </form>
+                                <form action="/koordinator-skripsi/excel-proposalTerjadwal" method="POST">
+                                    <button type="submit" name="export" value="excel" class="btn" style="background-color: #325662; color: #FFF;">
+                                        <i></i> Excel
+                                    </button>
+                                </form>
+                                <form action="/koordinator-skripsi/pdf-proposalTerjadwal" method="POST">
+                                    <button type="submit" name="export" value="pdf" class="btn" 
+                                    style="background-color: #325662; color: #FFF;">
+                                        <i></i> PDF
+                                    </button>
+                                </form>
+                                <!-- <form action="/admin/print" method="POST"> -->
+                                    <!-- <button type="submit" name="export" value="pdf" class="btn"  -->
+                                    <!-- style="background-color: #325662; color: #FFF;"> -->
+                                        <!-- <i></i> Print -->
+                                    <!-- </button> -->
+                                <!-- </form> -->
+                            </div> 
+                            <br>                           
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NPM</th>
+                                        <th>Nama</th>
+                                        <th>Proposal</th>
+                                        <th>Revisi</th>
+                                        <th>Jadwal Seminar Proposal</th>
+                                        <th>Status Proposal</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% dataProposal.filter(item => item.jadwalSeminarProposal && item.
+                                        statusProposal !== 'Selesai').map((item, i) => { %>
+                                        <tr>
+                                            <td><%= i+1 %></td>
+                                            <td><%= item.npm %></td>
+                                            <td><%= item.nama %></td>
+                                            <% var judulToShow; %>
+                                            <% if (item.TitleSubmission) { %>
+                                            <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                                                <% judulToShow = item.TitleSubmission.judul1; %>
+                                            <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                                                <% judulToShow = item.TitleSubmission2.judul2; %>
+                                            <% } else { %>
+                                                <% judulToShow = '-'; %>
+                                            <% } %>
+                                            <% } else { %>
+                                            <% judulToShow = '-'; %>
+                                            <% } %>
+                                            <td>
+                                                <% if (item.proposal) { %>
+                                                  <a href="/koordinator-skripsi/proposal/download/<%= item.id %>">
+                                                    <%= item.proposal.split('/').pop() %>
+                                                  </a>
+                                                <% } else { %>
+                                                  -
+                                                <% } %>
+                                              </td>
+                                              <td>
+                                                <button type="button" class="btn btn-sm btn-primary1"  style="background-color: #325662; color: #FFF; white-space: nowrap;" data-toggle="modal" data-target="#lihatRevisiPb1Pb2<%= item.id %>">Lihat Revisi</button>
+                                                <%- include('./modals/lihatRevisi', {
+                                                    id: item.id,
+                                                    npm: item.npm,
+                                                    nama: item.nama,
+                                                    judul: item.judul,
+                                                    dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                    dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                    revisi1: item.revisi1,
+                                                    revisi2: item.revisi2,
+                                                    proposalRevisiDosen1: item.proposalRevisiDosen1,
+                                                    proposalRevisiDosen2: item.proposalRevisiDosen2,
+                                                    tanggalRevisiDosen1: item.tanggalRevisiDosen1,
+                                                    tanggalRevisiDosen2: item.tanggalRevisiDosen2,
+                                                }) %>
+                                            </td>
+                                            <td>
+                                                <% if (item.jadwalSeminarProposal) { %>
+                                                    <% const timezone = 'Asia/Jakarta' %>
+                                                    <% const date = new Date(item.jadwalSeminarProposal); %>
+                                                    <% const options = {
+                                                        timeZone: timezone,
+                                                        weekday: 'long',
+                                                        day: 'numeric',
+                                                        month: 'long',
+                                                        year: 'numeric',
+                                                    }; %>
+                                                    <% const formattedDate = date.toLocaleDateString('id-ID', options) + '. Pukul ' + date.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB.'; %>
+                                                    <p><%= formattedDate %></p>
+                                                <% } %>
+                                             </td>
+                                             <td id="statusProposal_<%= item.id %>" style="font-weight: 
+                                                bold;">
+                                                         <span class="<%= warna5[item.id] %>">
+                                                             <% if (item.statusProposal) { %>
+                                                                 <%= item.statusProposal %>
+                                                             <% } else { %>
+                                                                 <span style="color: orange;">Menunggu Persetujuan</span>
+                                                             <% } %>
+                                                         </span>
+                                                     </td>                                            
+                                            <td style="display: flex; justify-content: center; align-items: center;">
+                                                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                                <button class="btn i btn-sm btn-warning" data-toggle="modal" data-target="#editProposal<%= item.id %>">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <%- include('./modals/editProposalTerjadwal', {
+                                                    id: item.id,
+                                                    npm: item.npm,
+                                                    nama: item.nama,
+                                                    judul: judulToShow,
+                                                    dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                    dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                    dosenPembahas: item.DevisionOfLecturer.dosenPembahas,
+                                                    jadwalSeminarProposal: item.jadwalSeminarProposal
+                                                }) %>
+                                                <div style="margin-top: 10px;">
+                                                    <button type="button" class="btn btn-sm btn-primary2" 
+                                                style="background-color: #00a89d; color: #FFF;" 
+                                                data-toggle="modal" data-target="#editSelesai<%= item.id 
+                                                %>">Selesai</button>
+                                                        </button>
+                                                    <%- include('./modals/editSelesai', {
+                                                        id: item.id,
+                                                        npm: item.npm,
+                                                        nama: item.nama,
+                                                        judul: judulToShow,
+                                                        dosenPembimbing1: item.DevisionOfLecturer.dosenPembimbing1,
+                                                        dosenPembimbing2: item.DevisionOfLecturer.dosenPembimbing2,
+                                                        dosenPembahas: item.DevisionOfLecturer.dosenPembahas,
+                                                        jadwalSeminarProposal: item.jadwalSeminarProposal
+                                                    }) %>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+<%- include('../layouts/footer') %>

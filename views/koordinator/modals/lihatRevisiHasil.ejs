@@ -1,0 +1,70 @@
+<div class="modal fade" id="lihatRevisiPb1Pb2Hasil<%= id %>" tabindex="-1" role="dialog" aria-labelledby="lihatRevisiPb1Pb2HasilLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Revisi dari Dosen Pembimbing 1 dan Dosen Pembimbing 2</h4>
+                    </div>
+                    <div class="modal-body container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="npm">NPM</label>
+                                    <input class="form-control" type="number" name="npm" id="npm" value="<%= npm %>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input class="form-control" type="text" name="nama" id="nama" value="<%= nama %>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="judul">Judul</label>
+                                    <input class="form-control w-25" type="text" name="judul" id="judul" value="<%= judul %>" disabled>
+                                </div>
+                            <div class="form-group">
+                                <label for="revisi1">Revisi ( <label style="color: #4682B4; font-weight: bold;">Dosen Pembimbing 1:</label><span style="color: #4682B4; font-weight: bold;"><%= dosenPembimbing1 %></span></label> )
+                                <textarea class="form-control" name="revisi1" id="revisi1" style="height: 300px;" disabled><%= revisi1 %></textarea>
+                            </div>
+                            <div class="form-group">
+                              <br>
+                              <label for="hasilSkripsiRevisiDosen1">Revisi Bimbingan Hasil dari Dosen  : </label>
+                              <% if (hasilSkripsiRevisiDosen1) { %>
+                                <a href="/koordinator-skripsi/hasil-skripsi-revisiDosen1/download/<%= id %>">
+                                  <%= hasilSkripsiRevisiDosen1.split('/').pop() %>
+                                </a>
+                              <% } else { %>
+                                -
+                              <% } %> 
+                            </div>                      
+                            <div class="form-group">
+                              <label for="tanggalRevisiDosen1">Tanggal Dosen Memberikan Revisi</label>
+                              <input class="form-control" type="datetime-local" name="tanggalRevisiDosen1" id="tanggalRevisiDosen1" value="<%= tanggalRevisiDosen1 ? new Date(tanggalRevisiDosen1).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" disabled>
+                          </div> 
+                          <br>
+                          <div class="form-group">
+                            <label for="revisi2">Revisi ( <label style="color: #4682B4; font-weight: bold;">Dosen Pembimbing 2:</label><span style="color: #4682B4; font-weight: bold;"><%= dosenPembimbing2 %></span></label> )
+                            <textarea class="form-control" name="revisi2" id="revisi2" style="height: 300px;" disabled><%= revisi2 %></textarea>
+                        </div>
+                        <div class="form-group">
+                          <br>
+                          <label for="hasilSkripsiRevisiDosen2">Revisi Hasil Skripsi dari Dosen  : </label>
+                          <% if (hasilSkripsiRevisiDosen2) { %>
+                            <a href="/koordinator-skripsi/hasil-skripsi-revisiDosen2/download/<%= id %>">
+                              <%= hasilSkripsiRevisiDosen2.split('/').pop() %>
+                            </a>
+                          <% } else { %>
+                            -
+                          <% } %> 
+                        </div>                      
+                        <div class="form-group">
+                          <label for="tanggalRevisiDosen2">Tanggal Dosen Memberikan Revisi</label>
+                          <input class="form-control" type="datetime-local" name="tanggalRevisiDosen2" id="tanggalRevisiDosen2" value="<%= tanggalRevisiDosen2 ? new Date(tanggalRevisiDosen2).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" disabled>
+                      </div>                                                       
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" style="background-color: #325662; color: #FFF;" 
+                        data-dismiss="modal">Kembali</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

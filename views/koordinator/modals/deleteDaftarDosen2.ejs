@@ -1,0 +1,22 @@
+<div class="modal fade" id="deleteDaftarDosen<%= id %>" tabindex="-1" aria-labelledby="deleteDaftarDosen" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteDaftarDosen">
+                    Hapus Dosen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah anda yakin ingin menghapus daftar dosen pembimbing 1 atas nama <%= nama %>?
+            </div>
+            <div class="modal-footer">
+                <form action="/koordinator-skripsi/daftar-dosen2/delete/<%= id %>" method="get">
+                    <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Ya</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+            </div>
+        </div>
+    </div>
+</div>

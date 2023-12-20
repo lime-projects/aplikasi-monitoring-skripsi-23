@@ -1,0 +1,85 @@
+<div class="modal fade" id="statusProposal" tabindex="-1" role="dialog" aria-labelledby="stasusProposalLabel" 
+aria-hidden="true">
+        <!-- Proposal Form -->
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form action="/mahasiswa/proposal-status/edit" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4>Status Proposal</h4>
+                </div>
+                <div class="modal-body container">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="npm">NPM</label>
+                        <input class="form-control" type="number" name="npm" id="npm" value="<%= profile.npm %>" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input class="form-control" type="text" name="nama" id="nama" value="<%= profile.nama %>" disabled>
+                      </div>
+                      <br>
+                      <label for="judul">Judul : </label>
+                      <br>
+                      <% dataProposal.map((item, i) => { %>
+                        <% if (item.TitleSubmission) { %>
+                          <% if (item.TitleSubmission.statusPersetujuan === 'Judul 1 Diterima') { %>
+                            <%= item.TitleSubmission.judul1 %>
+                          <% } else if (item.TitleSubmission.statusPersetujuan === 'Judul 2 Diterima') { %>
+                            <%= item.TitleSubmission2.judul2 %>
+                          <% } else { %>
+                            -
+                          <% } %>
+                        <% } %>
+                      <% }) %>
+                      <br>
+                      <br>
+                      <div class="form-group">
+                        <label for="jadwalSeminarProposal">Jadwal Seminar Proposal</label>
+                        <input class="form-control" type="datetime-local" name="jadwalSeminarProposal" id="jadwalSeminarProposal"
+                            value="<%= proposal.jadwalSeminarProposal ? new Date(proposal.jadwalSeminarProposal).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                    </div>                            
+                    <div class="form-group">
+                      <label for="proposal">Status Proposal</label>
+                      <br>
+                      <% if (proposal) { %>
+                          <span class="text-success">✔</span> 
+                          <span style="color: green;">Proposal sudah diajukan</span> 
+                      <% } %>
+                      <br>
+                      <% if (proposal.proposalRevisi1) { %>
+                        <span class="text-success">✔</span> 
+                        <span style="color: green;">Revisi Proposal dengan dosen pembimbing 1 sudah diajukan</span> 
+                    <% } %>
+                    <br>
+                    <% if (proposal.proposalRevisi2) { %>
+                      <span class="text-success">✔</span> 
+                      <span style="color: green;">Revisi Proposal dengan dosen pembimbing 2 sudah diajukan</span> 
+                  <% } %>
+                  <br>
+                      <% if (proposal.jadwalSeminarProposal) { %>
+                        <span class="text-success">✔</span> 
+                        <span style="color: green;">Seminar proposal sudah dijadwalkan</span> 
+                    <% } %>
+                    <br>
+                    <% if (proposal.statusProposal === 'Selesai') { %>
+                      <span class="text-success">✔</span> 
+                      <span style="color: green;">Proposal sudah selesai</span> 
+                  <% } %>
+                  </div>                  
+                  </div>
+                  </div>
+                  </div>
+                <div style="color: red; margin-left: 25px;">
+                  Input jadwal seminar proposal apabila telah di acc untuk seminar proposal dan telah mendapatkan 
+                jadwal dari dosen pembimbing 1, dosen pembimbing 2, dan dosen pembahas.
+              </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Ubah</button>
+                  <button type="button" class="btn" data-dismiss="modal" style="background-color: red; color: #FFF;">Kembali</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!-- /.container-fluid -->

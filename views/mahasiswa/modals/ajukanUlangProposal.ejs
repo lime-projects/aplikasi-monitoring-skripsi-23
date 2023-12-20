@@ -1,0 +1,41 @@
+<div class="modal fade" id="ajukanUlang" tabindex="-1" role="dialog" aria-labelledby="ajukanUlangLabel" 
+aria-hidden="true">
+        <!-- Proposal Form -->
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form action="/mahasiswa/proposal/edit" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4>Ajukan Ulang Proposal</h4>
+                </div>
+                <div class="modal-body container">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="npm">NPM</label>
+                        <input class="form-control" type="number" name="npm" id="npm" value="<%= profile.npm %>" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input class="form-control" type="text" name="nama" id="nama" value="<%= profile.nama %>" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="proposal">Proposal Baru</label>
+                        <input class="form-control-file" type="file" accept="*/*" name="proposal" id="proposal" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="tanggalPengajuan">Tanggal Pengajuan</label>
+                        <input class="form-control" type="datetime-local" name="tanggalPengajuan" id="tanggalPengajuan" value="<%= proposal.tanggalPengajuan ? new Date(proposal.tanggalPengajuan).toLocaleString('sv', { timeZone: 'Asia/Jakarta' }).slice(0, 16) : '' %>" required>
+                    </div>                            
+                    </div>
+                  </div>
+                </div>
+                <div style="color: red; margin-left: 20px;">Dengan mengajukan ulang proposal, maka proposal sebelumnya akan dihapus. Selanjutnya anda dapat mengupload ulang proposal yang baru. Apakah ingin mengajukan ulang proposal?</div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn" style="background-color: #325662; color: #FFF;">Ajukan Ulang</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!-- /.container-fluid -->
